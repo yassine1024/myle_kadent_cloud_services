@@ -23,4 +23,9 @@ public class PatientService {
         return patients;
 
     }
+
+    public Patient getPatient(String id) {
+
+       return patientRepository.findById(id).get();
+    }
 }
