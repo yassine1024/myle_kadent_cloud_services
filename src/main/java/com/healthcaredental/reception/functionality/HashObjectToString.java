@@ -1,6 +1,7 @@
 package com.healthcaredental.reception.functionality;
 
-public interface HashStringObject<T> {
 
-    public String hasheObjectToString(T object);
+public interface HashObjectToString<T> {
+
+    public  String hasheObjectToString(T object) throws Exception;
 }

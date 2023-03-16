@@ -9,10 +9,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class HashPatientToString {
+public class HashPatientToStringTests {
 
     @Autowired
-    private HashObjectToString<Patient>  hashPatientToString;
+    private HashPatientToString  hashPatientToString;
 
 
     @Test
