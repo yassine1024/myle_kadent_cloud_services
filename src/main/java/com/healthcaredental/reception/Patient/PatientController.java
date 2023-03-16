@@ -1,10 +1,7 @@
 package com.healthcaredental.reception.Patient;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +21,12 @@ public class PatientController {
     public Patient getPatient(@PathVariable("id") String id){
 
         return patientService.getPatient(id);
+    }
+
+    @PostMapping
+    public void addPatient(@RequestBody Patient patient){
+
+        patientService.addPatient(patient);
     }
 
 

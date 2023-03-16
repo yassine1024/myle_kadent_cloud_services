@@ -28,4 +28,9 @@ public class PatientService {
 
        return patientRepository.findById(id).get();
     }
+
+    public void addPatient(Patient patient) {
+
+        patientRepository.save(patient);
+    }
 }
