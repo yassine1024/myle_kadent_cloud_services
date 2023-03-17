@@ -42,4 +42,15 @@ public class PatientService {
         }
         patientRepository.save(patient);
     }
+
+    public void updatePatient(Patient patient) {
+
+        patientRepository.save(patient);
+    }
+
+
+    public void deletePatient(String id) {
+
+        patientRepository.deleteById(id);
+    }
 }

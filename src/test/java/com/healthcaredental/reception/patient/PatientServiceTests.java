@@ -44,6 +44,14 @@ public class PatientServiceTests {
 
         Assertions.assertEquals("Atik2", patientService.getPatient("2066464510").getFirstName());
 
+        patientService.deletePatient("2066464510");
+        System.out.println("Lists of patient after delete: ");
+
+        patientService.getAllPatients().forEach(patient1 -> {
+            System.out.println("Patient: " + patient1.getFirstName() + " " + patient1.getLastName() + " ID: " + patient1.getId());
+        });
+
+
     }
 
 
