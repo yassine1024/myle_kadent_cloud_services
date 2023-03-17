@@ -13,6 +13,9 @@ public class Patient {
     private String phoneNumber;
     private String address;
 
+    public Patient() {
+    }
+
     public Patient(String id, String firstName, String lastName, String phoneNumber, String address) {
         this.id = id;
         this.firstName = firstName;
