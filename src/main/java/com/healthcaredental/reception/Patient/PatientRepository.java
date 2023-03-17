@@ -1,6 +1,7 @@
 package com.healthcaredental.reception.Patient;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PatientRepository extends CrudRepository<Patient, String> {
+
+public interface PatientRepository extends JpaRepository<Patient, String> {
 }
