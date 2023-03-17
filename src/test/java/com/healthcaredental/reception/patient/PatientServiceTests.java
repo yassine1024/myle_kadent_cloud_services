@@ -4,6 +4,7 @@ package com.healthcaredental.reception.patient;
 import com.healthcaredental.reception.Patient.Patient;
 import com.healthcaredental.reception.Patient.PatientService;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,6 +40,9 @@ public class PatientServiceTests {
         patientService.getAllPatients().forEach(patient1 -> {
             System.out.println("Patient: " + patient1.getFirstName() + " " + patient1.getLastName() + " ID: " + patient1.getId());
         });
+
+
+        Assertions.assertEquals("Atik2", patientService.getPatient("2066464510").getFirstName());
 
     }
 
