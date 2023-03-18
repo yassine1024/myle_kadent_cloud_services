@@ -16,6 +16,10 @@ public class Patient {
     public Patient() {
     }
 
+    public Patient(String id) {
+        this.id = id;
+    }
+
     public Patient(String id, String firstName, String lastName, String phoneNumber, String address) {
         this.id = id;
         this.firstName = firstName;
