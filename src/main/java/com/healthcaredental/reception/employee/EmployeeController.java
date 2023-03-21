@@ -1,2 +1,46 @@
-package com.healthcaredental.reception.employee;public class EmployeeController {
+package com.healthcaredental.reception.employee;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/cabinet/{cabinetId}/employees")
+public class EmployeeController {
+
+    @Autowired
+    private EmployeeService employeeService;
+
+
+    @GetMapping("")
+    public List<Employee> getAllEmployees(){
+
+        return employeeService.getAllEmployees();
+    }
+
+    @GetMapping("/{id}")
+    public Employee getEmployee(@PathVariable String id){
+
+        return employeeService.getEmployee(id);
+    }
+
+    @PostMapping("")
+    public void addEmployee(@RequestBody Employee employee){
+
+        employeeService.addEmployee(employee);
+    }
+
+    @PutMapping("/{id}")
+    public void updateEmployee(@RequestBody Employee employee){
+
+        employeeService.updateEmployee(employee);
+    }
+
+    @DeleteMapping("/{id}")
+    public  void deleteEmployee(@PathVariable String id){
+
+        employeeService.deleteEmployee(id);
+    }
+
 }
