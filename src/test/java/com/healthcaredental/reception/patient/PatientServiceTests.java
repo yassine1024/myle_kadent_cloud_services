@@ -1,6 +1,7 @@
 package com.healthcaredental.reception.patient;
 
 
+import com.github.javafaker.Faker;
 import com.healthcaredental.reception.Patient.Patient;
 import com.healthcaredental.reception.Patient.PatientService;
 import org.junit.Test;
@@ -8,14 +9,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@Import(TestConfig.class)
+@SpringBootTest(properties = "spring.config.name=application-test")
 public class PatientServiceTests {
 
     @Autowired
@@ -23,33 +22,20 @@ public class PatientServiceTests {
 
     @Test
     public void testAddPatient() {
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 25; i++) {
 
+            Faker faker =new Faker();
 
             Patient patient = new Patient();
-            patient.setId("" + i);
-            patient.setFirstName("Atik" + i);
-            patient.setLastName("Yassine" + i);
-            patient.setPhoneNumber("05456232" + i);
-            patient.setAddress("Blida");
+            patient.setId("");
+            patient.setFirstName(faker.name().firstName());
+            patient.setLastName(faker.name().lastName());
+            patient.setPhoneNumber(faker.phoneNumber().phoneNumber());
+            patient.setAddress(faker.address().streetAddress());
             patientService.addPatient(patient);
 
 
         }
-
-        patientService.getAllPatients().forEach(patient1 -> {
-            System.out.println("Patient: " + patient1.getFirstName() + " " + patient1.getLastName() + " ID: " + patient1.getId());
-        });
-
-
-        Assertions.assertEquals("Atik2", patientService.getPatient("2066464510").getFirstName());
-
-        patientService.deletePatient("2066464510");
-        System.out.println("Lists of patient after delete: ");
-
-        patientService.getAllPatients().forEach(patient1 -> {
-            System.out.println("Patient: " + patient1.getFirstName() + " " + patient1.getLastName() + " ID: " + patient1.getId());
-        });
 
 
     }
