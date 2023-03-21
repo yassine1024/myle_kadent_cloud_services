@@ -27,7 +27,7 @@ class CabinetServiceTest {
     @Test
     void test1() {
 
-        for(int i = 0; i <100;i++){
+        for(int i = 0; i <10;i++){
             System.out.println("i::::"+i);
             Faker faker = new Faker();
             Cabinet cabinet = new Cabinet();
@@ -78,7 +78,7 @@ class CabinetServiceTest {
     void test5() {
 
 
-        cabinetService.deleteCabinet("92");
+        cabinetService.deleteCabinet("105");
         cabinetService.getAllCabinet().forEach(cabinet -> {
             System.out.println("Cabinet: "+cabinet.getId()+" name: "+cabinet.getName()
                     +" phone: "+cabinet.getPhoneNumber()+" Address: "+cabinet.getAddress());
