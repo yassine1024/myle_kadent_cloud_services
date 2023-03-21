@@ -1,10 +1,9 @@
 spring:
   datasource:
-    driverClassName: org.apache.derby.jdbc.EmbeddedDriver
-    url: jdbc:derby:memory:testdb;create=true
-    username: sa
+    url:jdbc: mysql://localhost:3306/cabinet_medicale_multi_post
+    username: root
     password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    database-platform: org.hibernate.dialect.DerbyTenSevenDialect
     hibernate:
       ddl-auto: update
