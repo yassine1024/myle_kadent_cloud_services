@@ -44,12 +44,12 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
-		<dependency>
+	<!--	<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derby</artifactId>
 			<version>10.14.2.0</version>
-<!--			<scope>test</scope>-->
-		</dependency>
+&lt;!&ndash;			<scope>test</scope>&ndash;&gt;
+		</dependency>-->
 
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
