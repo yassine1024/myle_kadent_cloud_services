@@ -21,10 +21,10 @@ class CabinetServiceTest {
     void test1() {
 
         for(int i = 0; i <10;i++){
-            System.out.println("i::::"+i);
+
             Faker faker = new Faker();
             Cabinet cabinet = new Cabinet();
-            cabinet.setId(i+"");
+            cabinet.setId(faker.idNumber().ssnValid());
             cabinet.setAddress(faker.address().fullAddress());
             cabinet.setPhoneNumber(faker.phoneNumber().phoneNumber());
             cabinet.setName(faker.name().fullName());
