@@ -1,0 +1,17 @@
+[33mcommit 026541ebbd7ad49b41d8d096d3d2004065662c98[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: yassine1024 <the.fire.of.hell.is.black@gmail.com>
+Date:   Tue Mar 21 20:31:29 2023 +0100
+
+    Add EmployeeService and implement all CRUD methodes.
+
+[33mcommit 4e57eb7d2de64b7cc10dc63ad974aceb9e35a266[m
+Author: yassine1024 <the.fire.of.hell.is.black@gmail.com>
+Date:   Tue Mar 21 20:24:12 2023 +0100
+
+    Add cabinetId as parameter in getAllEmployees in EmployeeController to return employees to a specific cabinet.
+
+[33mcommit 9929cc2fe5f24b09b52abface8208b3846a32507[m
+Author: yassine1024 <the.fire.of.hell.is.black@gmail.com>
+Date:   Tue Mar 21 20:16:16 2023 +0100
+
+    Add EmployeeRepository and declare findByCabinetId method on it.
