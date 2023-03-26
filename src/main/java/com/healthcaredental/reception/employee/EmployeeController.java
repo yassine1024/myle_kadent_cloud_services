@@ -1,5 +1,6 @@
 package com.healthcaredental.reception.employee;
 
+import com.healthcaredental.reception.Patient.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,6 +42,12 @@ public class EmployeeController {
     public  void deleteEmployee(@PathVariable String id){
 
         employeeService.deleteEmployee(id);
+    }
+
+    @GetMapping("/{id}/patients")
+    public List<Patient> getPatientsByEmployee(@PathVariable String id){
+
+        return employeeService.getPatientsByEmployee(id);
     }
 
 }

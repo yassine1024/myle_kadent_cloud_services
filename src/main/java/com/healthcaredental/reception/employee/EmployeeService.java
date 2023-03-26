@@ -1,5 +1,6 @@
 package com.healthcaredental.reception.employee;
 
+import com.healthcaredental.reception.Patient.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,5 +41,10 @@ public class EmployeeService {
     public void deleteEmployee(String id) {
 
         employeeRepository.deleteById(id);
+    }
+
+    public List<Patient> getPatientsByEmployee(String id) {
+
+        return employeeRepository.findPatientsByEmployeeId(id);
     }
 }
