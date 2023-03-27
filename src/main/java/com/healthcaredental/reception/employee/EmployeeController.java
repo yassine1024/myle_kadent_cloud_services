@@ -1,6 +1,7 @@
 package com.healthcaredental.reception.employee;
 
 import com.healthcaredental.reception.Patient.Patient;
+import com.healthcaredental.reception.Patient.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,8 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private PatientService patientService;
 
 
     @GetMapping("")
@@ -47,7 +50,7 @@ public class EmployeeController {
     @GetMapping("/{id}/patients")
     public List<Patient> getPatientsByEmployee(@PathVariable String id){
 
-        return employeeService.getPatientsByEmployee(id);
+        return patientService.getPatientsByEmployee(id);
     }
 
 }

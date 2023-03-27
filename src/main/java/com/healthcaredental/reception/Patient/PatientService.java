@@ -53,4 +53,10 @@ public class PatientService {
 
         patientRepository.deleteById(id);
     }
+
+    public List<Patient> getPatientsByEmployee(String id) {
+
+
+        return patientRepository.findPatientsByEmployeeId(id);
+    }
 }
