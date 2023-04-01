@@ -27,8 +27,6 @@ public class Employee {
     //Path to the employee's document folder
     private String documentFolder;
     @ManyToOne
-    private EmployeeType employeeType;
-    @ManyToOne
     private Cabinet cabinet;
 
     @CreationTimestamp
