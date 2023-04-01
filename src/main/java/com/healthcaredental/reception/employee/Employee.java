@@ -11,9 +11,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -25,13 +22,14 @@ public class Employee {
     private String lastName;
     private String address;
     private String phoneNumber;
+    //Path to the photo store in local storage
+    private String photo;
+    //Path to the employee's document folder
+    private String documentFolder;
     @ManyToOne
     private EmployeeType employeeType;
     @ManyToOne
     private Cabinet cabinet;
-
-    @ManyToMany
-    private List<Patient> patients ;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

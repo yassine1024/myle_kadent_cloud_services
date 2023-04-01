@@ -1,13 +1,8 @@
 package com.healthcaredental.reception.Patient;
 
-import com.healthcaredental.reception.employee.Employee;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import java.util.List;
-import java.util.Set;
+
 
 @Entity
 public class Patient {
@@ -45,18 +40,6 @@ public class Patient {
     public void setAge(String age) {
         this.age = age;
     }
-
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
-    }
-
-    @ManyToMany(mappedBy = "patients")
-    private List<Employee> employees ;
-
 
     public Patient() {
     }

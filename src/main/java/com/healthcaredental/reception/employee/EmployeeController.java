@@ -47,10 +47,5 @@ public class EmployeeController {
         employeeService.deleteEmployee(id);
     }
 
-    @GetMapping("/{id}/patients")
-    public List<Patient> getPatientsByEmployee(@PathVariable String id){
-
-        return patientService.getPatientsByEmployee(id);
-    }
 
 }

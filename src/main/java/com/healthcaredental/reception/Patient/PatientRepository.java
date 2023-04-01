@@ -8,6 +8,6 @@ import java.util.List;
 
 
 public interface PatientRepository extends JpaRepository<Patient, String> {
-    @Query("SELECT p FROM Patient p JOIN p.employees e WHERE e.id = :employeeId")
-    List<Patient> findPatientsByEmployeeId(@Param("employeeId") String employeeId);
+    @Query("SELECT DISTINCT rdv.patient FROM Rendezvous rdv WHERE rdv.medecin.id = :medecinId")
+    List<Patient> findPatientsByDoctorId(@Param("medecinId") String medecinId);
 }
