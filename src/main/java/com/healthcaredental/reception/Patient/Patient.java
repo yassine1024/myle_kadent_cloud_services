@@ -18,6 +18,41 @@ public class Patient {
     private String lastName;
     private String phoneNumber;
     private String address;
+    private String gender;
+    private String job;
+    private String age;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
 
     @ManyToMany(mappedBy = "patients")
     private List<Employee> employees ;

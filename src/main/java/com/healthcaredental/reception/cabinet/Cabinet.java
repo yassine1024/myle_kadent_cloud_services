@@ -13,6 +13,7 @@ public class Cabinet {
     @Id
     private String id;
     private String name;
+    private String field;
     private String address;
     private String phoneNumber;
 
