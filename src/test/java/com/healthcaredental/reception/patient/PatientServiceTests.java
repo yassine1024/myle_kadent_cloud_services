@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
 
 
 @RunWith(SpringRunner.class)
@@ -24,7 +25,7 @@ public class PatientServiceTests {
     public void testAddPatient() {
         for (int i = 0; i < 25; i++) {
 
-            Faker faker =new Faker();
+            Faker faker = new Faker();
 
             Patient patient = new Patient();
             patient.setId("");
@@ -38,6 +39,17 @@ public class PatientServiceTests {
         }
 
 
+    }
+
+    @Test
+    public void getPatientsByDoctor() {
+
+        String id = "517-61-5102";
+        List<Patient> patients = patientService.getPatientsByDoctor(id);
+
+        patients.forEach(patient -> {
+            System.out.println("Patient : " + patient.getFirstName());
+        });
     }
 
 

@@ -2,6 +2,8 @@ package com.healthcaredental.reception.employee;
 
 import com.github.javafaker.Faker;
 import com.healthcaredental.reception.cabinet.CabinetService;
+import com.healthcaredental.reception.employee.assistant.Assistant;
+import com.healthcaredental.reception.employee.medecin.Medecin;
 import com.healthcaredental.reception.employeeType.EmployeeTypeService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -34,17 +36,18 @@ class EmployeeServiceTest {
     @Test
     void addEmployee() {
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 2; i++) {
 
             Faker faker = new Faker();
-            Employee employee = new Employee();
+            Employee employee = new Assistant();
 
             employee.setId(faker.idNumber().valid());
             employee.setFirstName(faker.name().firstName());
             employee.setLastName(faker.name().lastName());
             employee.setAddress(faker.address().streetAddress());
-            employee.setCabinet(cabinetService.getCabinet("116-38-7206"));
-            employee.setEmployeeType(employeeTypeService.getEmployeeType(3));
+            employee.setCabinet(cabinetService.getCabinet("029-36-0230"));
+
+            employee.setPhoto(faker.file().fileName());
 
             employeeService.addEmployee(employee);
         }
