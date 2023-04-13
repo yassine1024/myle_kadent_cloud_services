@@ -1,9 +1,7 @@
 package com.healthcaredental.reception.employee;
 
 
-import com.healthcaredental.reception.Patient.Patient;
 import com.healthcaredental.reception.cabinet.Cabinet;
-import com.healthcaredental.reception.employeeType.EmployeeType;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -33,5 +31,4 @@ public class Employee {
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-
 }

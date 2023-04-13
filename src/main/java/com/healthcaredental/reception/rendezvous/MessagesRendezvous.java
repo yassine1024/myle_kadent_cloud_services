@@ -1,14 +1,14 @@
 package com.healthcaredental.reception.rendezvous;
 
-public enum ErrorRendezvous {
+public enum MessagesRendezvous {
 
     NBR_RDV_LIMIT("Vous avez atteint la limite des rendezvous!"),
-    MISSING_PARAMETER("Missing parameter"),
+    ADD_RDV_SUCCESS("Le rendezvous a été ajouté avec succés."),
     DATABASE_ERROR("Database error");
 
     private final String message;
 
-    ErrorRendezvous(String message) {
+    MessagesRendezvous(String message) {
         this.message = message;
     }
 

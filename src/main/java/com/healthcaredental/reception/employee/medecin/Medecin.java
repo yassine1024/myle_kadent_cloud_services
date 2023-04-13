@@ -17,4 +17,6 @@ public class Medecin extends Employee {
     private float recette;
     private float pourcentage;
 
+
+
 }

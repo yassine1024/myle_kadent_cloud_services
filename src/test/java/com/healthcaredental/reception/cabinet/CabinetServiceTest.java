@@ -20,7 +20,7 @@ class CabinetServiceTest {
     @Test
     void test1() {
 
-        for(int i = 0; i <10;i++){
+        for(int i = 0; i <2;i++){
 
             Faker faker = new Faker();
             Cabinet cabinet = new Cabinet();

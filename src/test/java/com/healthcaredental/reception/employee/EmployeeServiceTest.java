@@ -4,7 +4,6 @@ import com.github.javafaker.Faker;
 import com.healthcaredental.reception.cabinet.CabinetService;
 import com.healthcaredental.reception.employee.assistant.Assistant;
 import com.healthcaredental.reception.employee.medecin.Medecin;
-import com.healthcaredental.reception.employeeType.EmployeeTypeService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +21,7 @@ class EmployeeServiceTest {
     EmployeeService employeeService;
     @Autowired
     CabinetService cabinetService;
-    @Autowired
-    EmployeeTypeService employeeTypeService;
+
 
     @Test
     void getAllEmployees() {
@@ -39,13 +37,13 @@ class EmployeeServiceTest {
         for (int i = 0; i < 2; i++) {
 
             Faker faker = new Faker();
-            Employee employee = new Assistant();
+            Employee employee = new Medecin();
 
             employee.setId(faker.idNumber().valid());
             employee.setFirstName(faker.name().firstName());
             employee.setLastName(faker.name().lastName());
             employee.setAddress(faker.address().streetAddress());
-            employee.setCabinet(cabinetService.getCabinet("029-36-0230"));
+            employee.setCabinet(cabinetService.getCabinet("740-04-7106"));
 
             employee.setPhoto(faker.file().fileName());
 

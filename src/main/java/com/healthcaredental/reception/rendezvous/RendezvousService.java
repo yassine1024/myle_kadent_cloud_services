@@ -9,15 +9,27 @@ import java.util.List;
 @Service
 public class RendezvousService {
 
+    private final  String METHOD_RENDEZVOUS="FIFO";
+    private RendezvousManagement rendezvousManagement;
+
+    public RendezvousService() {
+
+        if(this.METHOD_RENDEZVOUS.equals("FIFO")){
+            rendezvousManagement = new RendezvousFIFO();
+        }
+
+    }
+
     @Autowired
     private RendezvousRepository rendezvousRepository;
+
     public List<Rendezvous> getAllRendezvous() {
 
         List<Rendezvous> rendezvous = new ArrayList<Rendezvous>();
 
-         rendezvousRepository.findAll()
+        rendezvousRepository.findAll()
                 .forEach(rendezvous::add);
-         return rendezvous;
+        return rendezvous;
 
     }
 
@@ -25,9 +37,10 @@ public class RendezvousService {
         return null;
     }
 
-    public void addRendezvous(Rendezvous rendezvous) {
+    public String addRendezvous(Rendezvous rendezvous) {
 
-        rendezvousRepository.save(rendezvous);
+//        rendezvousRepository.save(rendezvous);
+        return rendezvousManagement.addRendezvous(rendezvous,rendezvousRepository);
     }
 
     public void updateRendezvous(Rendezvous rendezvous) {

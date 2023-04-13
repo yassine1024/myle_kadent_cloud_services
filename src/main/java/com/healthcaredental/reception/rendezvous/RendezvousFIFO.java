@@ -1,27 +1,29 @@
 package com.healthcaredental.reception.rendezvous;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
-public class RendezvousStrict implements RendezvousManagement{
+import org.springframework.stereotype.Service;
 
-    @Autowired
-    private RendezvousRepository rendezvousRepository;
+@Service
+public class RendezvousFIFO implements RendezvousManagement{
+
+
     @Override
     public void getListRendezvousManagement() {
 
     }
 
     @Override
-    public String addRendezvous(Rendezvous rendezvous) {
+    public String addRendezvous(Rendezvous rendezvous,RendezvousRepository rendezvousRepository) {
 
-        if(this.getNbrRendezvous(rendezvous.getDate())>=15){
+        if(this.getNbrRendezvous(rendezvous.getDate(),rendezvousRepository)>=15){
             return MessagesRendezvous.NBR_RDV_LIMIT.getMessage();
         }
         rendezvousRepository.save(rendezvous);
         return MessagesRendezvous.ADD_RDV_SUCCESS.getMessage();
     }
 
-    private int getNbrRendezvous(String date){
+    private int getNbrRendezvous(String date, RendezvousRepository rendezvousRepository){
+        System.out.println(rendezvousRepository.getNbrRendezvousByDate(date));
         return rendezvousRepository.getNbrRendezvousByDate(date);
     }
 }
