@@ -1,9 +1,10 @@
 package com.healthcaredental.reception.rendezvous;
 
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+
+@Component
 public class RendezvousFIFO implements RendezvousManagement{
 
 

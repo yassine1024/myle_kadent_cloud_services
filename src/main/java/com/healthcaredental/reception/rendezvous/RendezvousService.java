@@ -9,14 +9,15 @@ import java.util.List;
 @Service
 public class RendezvousService {
 
-    private final  String METHOD_RENDEZVOUS="FIFO";
-    private RendezvousManagement rendezvousManagement;
+    private final  String METHOD_RENDEZVOUS="STRICT_NBR_HOUR";
+    private final RendezvousManagement rendezvousFIFO;
+    private final RendezvousManagement rendezvousStrictNbrPatientHour;
 
-    public RendezvousService() {
 
-        if(this.METHOD_RENDEZVOUS.equals("FIFO")){
-            rendezvousManagement = new RendezvousFIFO();
-        }
+    public RendezvousService(RendezvousFIFO rendezvousFIFO, RendezvousStrictNbrPatientHour rendezvousStrictNbrPatientHour) {
+
+        this.rendezvousFIFO = rendezvousFIFO;
+        this.rendezvousStrictNbrPatientHour = rendezvousStrictNbrPatientHour;
 
     }
 
@@ -40,7 +41,13 @@ public class RendezvousService {
     public String addRendezvous(Rendezvous rendezvous) {
 
 //        rendezvousRepository.save(rendezvous);
-        return rendezvousManagement.addRendezvous(rendezvous,rendezvousRepository);
+        if(this.METHOD_RENDEZVOUS.equals("FIFO")){
+            return rendezvousFIFO.addRendezvous(rendezvous, rendezvousRepository);
+        } else if (this.METHOD_RENDEZVOUS.equals("STRICT_NBR_HOUR")) {
+            return rendezvousStrictNbrPatientHour.addRendezvous(rendezvous, rendezvousRepository);
+
+        }
+        return "";
     }
 
     public void updateRendezvous(Rendezvous rendezvous) {

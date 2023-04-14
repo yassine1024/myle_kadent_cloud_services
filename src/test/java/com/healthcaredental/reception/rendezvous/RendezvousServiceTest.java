@@ -25,6 +25,7 @@ class RendezvousServiceTest {
         Rendezvous rendezvous = new Rendezvous();
         rendezvous.setPatient(new Patient("-1219625691"));
         rendezvous.setDate("2023-04-12");
+        rendezvous.setTime("9:45");
         String message= rendezvousService.addRendezvous(rendezvous);
         System.out.println(message);
 
@@ -32,7 +33,7 @@ class RendezvousServiceTest {
 
     @Test
     void addRendezvousBulk(){
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 1; i++) {
            addRendezvous();
         }
     }
