@@ -14,7 +14,7 @@ public class QueueController {
     private QueueService queueService;
 
     //this function executed only once, when the application starts up.
-    @PostConstruct
+//    @PostConstruct
     public void initializeQueueOnlyForFirstTime(@PathVariable String id){
 
         queueService.initializeQueue(id);

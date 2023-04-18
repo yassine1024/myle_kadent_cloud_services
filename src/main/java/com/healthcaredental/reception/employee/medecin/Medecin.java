@@ -13,6 +13,12 @@ import java.util.List;
 @Entity
 public class Medecin extends Employee {
 
+    public Medecin(){
+
+    }
+    public Medecin(String id){
+        this.id=id;
+    }
     private float salary;
     private float recette;
     private float pourcentage;

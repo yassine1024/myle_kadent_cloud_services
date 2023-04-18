@@ -15,20 +15,20 @@ import java.time.LocalDateTime;
 public class Employee {
 
     @Id
-    private String id;
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String phoneNumber;
+    protected String id;
+    protected String firstName;
+    protected String lastName;
+    protected String address;
+    protected String phoneNumber;
     //Path to the photo store in local storage
-    private String photo;
+    protected String photo;
     //Path to the employee's document folder
-    private String documentFolder;
+    protected String documentFolder;
     @ManyToOne
-    private Cabinet cabinet;
+    protected Cabinet cabinet;
 
     @CreationTimestamp
-    private LocalDateTime createdAt;
+    protected LocalDateTime createdAt;
     @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    protected LocalDateTime updatedAt;
 }
