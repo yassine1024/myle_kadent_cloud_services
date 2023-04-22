@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+
 public interface QueueRepository extends JpaRepository<Queue, Long> {
 
     @Query("SELECT COUNT(q) > 0 " +
@@ -34,4 +34,7 @@ public interface QueueRepository extends JpaRepository<Queue, Long> {
             "JOIN  med.cabinet cab " +
             "WHERE cab.id= :cabinetId")
     List<Queue> getAllQueuesByCabinet(@Param("cabinetId") String cabinetId);
+
+    @Query("SELECT q FROM Queue q WHERE q.rendezvousId = :rendezvousId")
+    Queue findByRendezvousId(@Param("rendezvousId") Long rendezvousId);
 }

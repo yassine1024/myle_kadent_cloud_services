@@ -27,7 +27,7 @@ public class RendezvousController {
     }
 
     @GetMapping("/rendezvous/{id}")
-    public Rendezvous getRendezvous(@PathVariable("id") String id) {
+    public Rendezvous getRendezvous(@PathVariable("id") Long id) {
 
         return rendezvousService.getRendezvous(id);
     }
@@ -49,7 +49,7 @@ public class RendezvousController {
     }
 
     @DeleteMapping("/rendezvous/{id}")
-    public void deleteRendezvous(@PathVariable String id){
+    public void deleteRendezvous(@PathVariable Long id){
         rendezvousService.deleteRendezvous(id);
     }
 }

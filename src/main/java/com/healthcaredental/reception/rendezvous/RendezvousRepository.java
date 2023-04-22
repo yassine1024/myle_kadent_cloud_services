@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface RendezvousRepository extends JpaRepository<Rendezvous,String> {
+public interface RendezvousRepository extends JpaRepository<Rendezvous, Long> {
 
     public List<Rendezvous> findByPatientId(String patientId);
     @Query("SELECT COALESCE(count(*), 0) FROM Rendezvous rdv WHERE rdv.date = :date")

@@ -1,5 +1,6 @@
 package com.healthcaredental.reception.Queue;
 
+import com.healthcaredental.reception.employee.medecin.Medecin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,22 +26,26 @@ public class QueueController {
 
        return queueService.getAllQueuesByCabinet(id);
     }
+    @GetMapping("/{rdvId}")
+    public Queue getQueueById(@PathVariable Long id){
 
+        return queueService.getQueueById(id);
+    }
     @PutMapping("/{rdvId}/Arrive")
     public void patientArrive(@RequestBody Queue queue){
 
         queueService.patientArrive(queue);
     }
 
-    @PutMapping("/{rdvId}/affect_patient_to_medecin")
-    public void affectPatientToMedecin(@RequestBody Queue queue){
-
-        queueService.affectPatientToMedecin(queue);
-    }
-
     @PutMapping("/{rdvId}/patient_quit")
     public void patientQuitRoom(@RequestBody Queue queue){
 
         queueService.patientQuitRoom(queue);
+    }
+
+    @PutMapping("/{rdvId}/patient_inside")
+    public void patientInsideRoom(@RequestBody Queue queue){
+
+        queueService.patientInsideRoom(queue);
     }
 }

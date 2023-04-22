@@ -34,8 +34,8 @@ public class RendezvousService {
 
     }
 
-    public Rendezvous getRendezvous(String id) {
-        return null;
+    public Rendezvous getRendezvous(Long id) {
+        return rendezvousRepository.findById(id).get();
     }
 
     public String addRendezvous(Rendezvous rendezvous) {
@@ -55,7 +55,7 @@ public class RendezvousService {
         rendezvousRepository.save(rendezvous);
     }
 
-    public void deleteRendezvous(String id) {
+    public void deleteRendezvous(Long id) {
 
         rendezvousRepository.deleteById(id);
     }

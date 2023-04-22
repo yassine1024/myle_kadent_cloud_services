@@ -1,6 +1,8 @@
 package com.healthcaredental.reception.rendezvous;
 
 import com.healthcaredental.reception.Patient.Patient;
+import com.healthcaredental.reception.Queue.Queue;
+import com.healthcaredental.reception.employee.Employee;
 import com.healthcaredental.reception.employee.EmployeeService;
 import com.healthcaredental.reception.employee.medecin.Medecin;
 import org.junit.jupiter.api.Test;
@@ -25,8 +27,8 @@ class RendezvousServiceTest {
         Rendezvous rendezvous = new Rendezvous();
         rendezvous.setPatient(new Patient("-1219625691"));
         rendezvous.setMedecin(new Medecin("524-44-5151"));
-        rendezvous.setDate("2023-04-18");
-        rendezvous.setTime("9:55");
+        rendezvous.setDate("2023-04-20");
+        rendezvous.setTime("19:55");
         String message= rendezvousService.addRendezvous(rendezvous);
         System.out.println(message);
 
@@ -40,4 +42,14 @@ class RendezvousServiceTest {
     }
 
 
+    @Test
+    void updateRendezvous() {
+
+
+        Employee medecin = employeeService.getEmployee("677-43-8360");
+        Rendezvous rendezvous= rendezvousService.getRendezvous(8l);
+        rendezvous.setMedecin((Medecin) medecin);
+
+        rendezvousService.updateRendezvous(rendezvous);
+    }
 }

@@ -22,10 +22,16 @@ public class Queue {
     private  String arriveTime;
     //Inside means that the patient is taking medical care
     private boolean isInside;
+    private String insideTime;
     private boolean isOutside;
     private String quitTime;
 
     @OneToOne
     @MapsId
     private Rendezvous rendezvous;
+
+    public Queue(){}
+    public Queue(Long rendezvousId){
+        this.rendezvousId=rendezvousId;
+    }
 }
