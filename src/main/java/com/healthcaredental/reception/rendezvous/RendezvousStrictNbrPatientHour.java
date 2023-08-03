@@ -12,7 +12,7 @@ public class RendezvousStrictNbrPatientHour implements RendezvousManagement{
     @Override
     public String addRendezvous(Rendezvous rendezvous, RendezvousRepository rendezvousRepositoryStrict) {
 
-        if(getNbrRendezvous(rendezvous,rendezvousRepositoryStrict)>=2){
+        if(getNbrRendezvous(rendezvous,rendezvousRepositoryStrict)>=3){
             return MessagesRendezvous.NBR_RDV_LIMIT.getMessage();
         }
 

@@ -1,7 +1,11 @@
 package com.healthcaredental.reception.Patient;
 
+import com.healthcaredental.reception.employee.medecin.Medecin;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.Set;
 
 
 @Entity
@@ -16,6 +20,8 @@ public class Patient {
     private String gender;
     private String job;
     private String age;
+    @ManyToMany(mappedBy = "treatedPatients")
+    private Set<Medecin> treates;
 
     public String getGender() {
         return gender;
