@@ -2,6 +2,7 @@ package com.healthcaredental.reception.cabinet;
 
 import com.github.javafaker.Faker;
 import com.healthcaredental.reception.Patient.Patient;
+import com.healthcaredental.reception.employee.medecin.Medecin;
 import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -92,6 +93,18 @@ class CabinetServiceTest {
                     System.out.println("Patient "+patient.getLastName()
                     +" "+patient.getFirstName());
         }
+        );
+    }
+
+    @Test
+    public void getDoctorsByCabinet() {
+
+        List<Medecin> doctors= cabinetService.getDoctorsByCatbinet("576-40-1283kfjfjk");
+
+        doctors.forEach( doctor -> {
+                    System.out.println("Doctor:  "+doctor.getLastName()
+                            +" "+doctor.getFirstName());
+                }
         );
     }
 }

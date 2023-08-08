@@ -1,6 +1,7 @@
 package com.healthcaredental.reception.cabinet;
 
 import com.healthcaredental.reception.Patient.Patient;
+import com.healthcaredental.reception.employee.medecin.Medecin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +48,9 @@ public class CabinetService {
 
     public List<Patient> getPatientsByCabinet(String id) {
         return cabinetRepository.getPatientsByCabinet(id);
+    }
+
+    public List<Medecin> getDoctorsByCatbinet(String id) {
+        return cabinetRepository.getDoctorsByCabinet(id);
     }
 }
