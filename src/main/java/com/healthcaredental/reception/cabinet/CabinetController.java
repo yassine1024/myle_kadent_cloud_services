@@ -1,7 +1,9 @@
 package com.healthcaredental.reception.cabinet;
 
 
+import com.healthcaredental.reception.Patient.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,5 +47,13 @@ public class CabinetController {
     @DeleteMapping("/{id}")
     public void deleteCabinet(@PathVariable String id){
         cabinetService.deleteCabinet(id);
+    }
+
+    @GetMapping("/{id}/patients")
+    public ResponseEntity<List<Patient>> getPatientsByCabinet(@PathVariable("id") String id) {
+
+        List<Patient> patients = cabinetService.getPatientsByCabinet(id);
+        return ResponseEntity.ok(patients);
+
     }
 }

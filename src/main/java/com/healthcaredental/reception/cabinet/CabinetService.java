@@ -1,5 +1,6 @@
 package com.healthcaredental.reception.cabinet;
 
+import com.healthcaredental.reception.Patient.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +43,9 @@ public class CabinetService {
     public void deleteCabinet(String id) {
 
         cabinetRepository.deleteById(id);
+    }
+
+    public List<Patient> getPatientsByCabinet(String id) {
+        return cabinetRepository.getPatientsByCabinet(id);
     }
 }

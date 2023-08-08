@@ -1,6 +1,7 @@
 package com.healthcaredental.reception.cabinet;
 
 import com.github.javafaker.Faker;
+import com.healthcaredental.reception.Patient.Patient;
 import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -8,6 +9,8 @@ import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(properties = "spring.config.name=application-test")
@@ -77,5 +80,18 @@ class CabinetServiceTest {
                     +" phone: "+cabinet.getPhoneNumber()+" Address: "+cabinet.getAddress());
 
         });
+    }
+
+
+    @Test
+    public void getPatientsByCabinet() {
+
+        List<Patient> patients= cabinetService.getPatientsByCabinet("740-04-7106");
+
+        patients.forEach( patient -> {
+                    System.out.println("Patient "+patient.getLastName()
+                    +" "+patient.getFirstName());
+        }
+        );
     }
 }

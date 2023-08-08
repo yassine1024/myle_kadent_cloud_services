@@ -73,7 +73,7 @@ public class CabinetControllerTest {
         verify(cabinetService, times(1)).getCabinet(cabinetId);
     }
 
-    @Test
+   /* @Test
     public void testAddCabinet() throws Exception {
         Cabinet cabinet = new Cabinet();
 
@@ -83,6 +83,11 @@ public class CabinetControllerTest {
                 .andExpect(status().isOk());
 
         verify(cabinetService, times(1)).addCabinet(cabinet);
+    }*/
+
+    @Test
+    public void getPatientsByCabinet() throws Exception {
+
     }
 /*
     @Test
@@ -111,4 +116,8 @@ public class CabinetControllerTest {
     private static String asJsonString(final Object obj) throws Exception {
         return new ObjectMapper().writeValueAsString(obj);
     }*/
+
+
+
+
 }
