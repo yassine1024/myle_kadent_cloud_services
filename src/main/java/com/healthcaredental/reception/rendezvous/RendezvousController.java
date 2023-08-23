@@ -4,7 +4,9 @@ import com.healthcaredental.reception.Patient.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -33,11 +35,16 @@ public class RendezvousController {
     }
 
     @PostMapping("/patients/{patientId}/rendezvous")
-    public void addRendezvous(@PathVariable String patientId, @RequestBody Rendezvous rendezvous) {
+    public Map<String, String> addRendezvous(@PathVariable String patientId, @RequestBody Rendezvous rendezvous) {
 
 
         rendezvous.setPatient(new Patient(patientId));
-        rendezvousService.addRendezvous(rendezvous);
+        String text= rendezvousService.addRendezvous(rendezvous);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Hello, JSON!");
+        response.put("status", "success");
+        response.put("value", text);
+        return response;
     }
 
     @PutMapping("/patients/{patientId}/rendezvous/{id}")

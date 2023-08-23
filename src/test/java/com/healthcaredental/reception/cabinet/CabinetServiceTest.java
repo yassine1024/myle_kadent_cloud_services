@@ -99,11 +99,12 @@ class CabinetServiceTest {
     @Test
     public void getDoctorsByCabinet() {
 
-        List<Medecin> doctors= cabinetService.getDoctorsByCatbinet("576-40-1283kfjfjk");
+        List<Medecin> doctors= cabinetService.getDoctorsByCatbinet("576-40-1283");
 
         doctors.forEach( doctor -> {
                     System.out.println("Doctor:  "+doctor.getLastName()
-                            +" "+doctor.getFirstName());
+                            +" "+doctor.getFirstName()
+                    +" "+doctor.getCabinet().getName());
                 }
         );
     }

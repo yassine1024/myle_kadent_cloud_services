@@ -58,7 +58,7 @@ public class CabinetController {
 
     }
 
-    @GetMapping("/{id}/doctors")
+    @GetMapping("/{id}/medecins")
     public ResponseEntity<List<Medecin>> getDoctorsByCabinet(@PathVariable("id") String id) {
 
         List<Medecin> doctors = cabinetService.getDoctorsByCatbinet(id);
