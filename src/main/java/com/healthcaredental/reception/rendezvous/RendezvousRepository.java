@@ -26,4 +26,6 @@ public interface RendezvousRepository extends JpaRepository<Rendezvous, Long> {
             "AND rdv.patient = :#{#rendezvous.patient} " +
             "AND rdv.medecin = :#{#rendezvous.medecin}")
     boolean ifPatientAlreadyAdded(@Param("rendezvous") Rendezvous rendezvous);
+
+    public List<Rendezvous> findByMedecinId(String medecinId);
 }

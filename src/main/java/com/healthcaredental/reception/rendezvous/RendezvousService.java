@@ -76,4 +76,13 @@ public class RendezvousService {
 
         return rendezvous;
     }
+
+    public List<Rendezvous> getAllRendezvousByDoctor(String medecinId) {
+
+        List<Rendezvous> rendezvous = new ArrayList<Rendezvous>();
+
+         rendezvousRepository.findByMedecinId(medecinId)
+                .forEach(rendezvous::add);
+         return rendezvous;
+    }
 }

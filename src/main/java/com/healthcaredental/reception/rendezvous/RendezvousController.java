@@ -22,6 +22,12 @@ public class RendezvousController {
 
         return rendezvousService.getAllRendezvousByPatient(patientId);
     }
+    @GetMapping("/medecin/{medecinId}/rendezvous")
+    public List<Rendezvous> getAllRendezvousByDoctor(@PathVariable String medecinId) {
+
+
+        return rendezvousService.getAllRendezvousByDoctor(medecinId);
+    }
     @GetMapping("/rendezvous")
     public List<Rendezvous> getAllRendezvous() {
 
