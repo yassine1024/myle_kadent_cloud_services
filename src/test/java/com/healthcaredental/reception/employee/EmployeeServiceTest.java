@@ -43,7 +43,7 @@ class EmployeeServiceTest {
             employee.setFirstName(faker.name().firstName());
             employee.setLastName(faker.name().lastName());
             employee.setAddress(faker.address().streetAddress());
-            employee.setCabinet(cabinetService.getCabinet("576-40-1283"));
+            employee.setCabinet(cabinetService.getCabinet("150-73-1828"));
 
             employee.setPhoto(faker.file().fileName());
 

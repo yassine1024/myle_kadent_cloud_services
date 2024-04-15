@@ -22,12 +22,14 @@ public class RendezvousController {
 
         return rendezvousService.getAllRendezvousByPatient(patientId);
     }
+
     @GetMapping("/medecin/{medecinId}/rendezvous")
     public List<Rendezvous> getAllRendezvousByDoctor(@PathVariable String medecinId) {
 
 
         return rendezvousService.getAllRendezvousByDoctor(medecinId);
     }
+
     @GetMapping("/rendezvous")
     public List<Rendezvous> getAllRendezvous() {
 
@@ -43,9 +45,10 @@ public class RendezvousController {
     @PostMapping("/patients/{patientId}/rendezvous")
     public Map<String, String> addRendezvous(@PathVariable String patientId, @RequestBody Rendezvous rendezvous) {
 
-
-        rendezvous.setPatient(new Patient(patientId));
-        String text= rendezvousService.addRendezvous(rendezvous);
+        Patient patient = new Patient();
+        patient.setId(patientId);
+        rendezvous.setPatient(patient);
+        String text = rendezvousService.addRendezvous(rendezvous);
         Map<String, String> response = new HashMap<>();
         response.put("message", "Hello, JSON!");
         response.put("status", "success");
@@ -56,13 +59,15 @@ public class RendezvousController {
     @PutMapping("/patients/{patientId}/rendezvous/{id}")
     public void updateRendezvous(@PathVariable String id, @PathVariable String patientId, @RequestBody Rendezvous rendezvous) {
 
-        rendezvous.setPatient(new Patient(patientId));
+        Patient patient = new Patient();
+        patient.setId(patientId);
+        rendezvous.setPatient(patient);
         rendezvousService.updateRendezvous(rendezvous);
 
     }
 
     @DeleteMapping("/rendezvous/{id}")
-    public void deleteRendezvous(@PathVariable Long id){
+    public void deleteRendezvous(@PathVariable Long id) {
         rendezvousService.deleteRendezvous(id);
     }
 }
