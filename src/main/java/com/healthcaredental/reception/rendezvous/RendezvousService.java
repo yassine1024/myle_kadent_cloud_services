@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class RendezvousService {
 
-    private final  String METHOD_RENDEZVOUS="UNDEFINED_NBR_HOUR";
+    private final  String METHOD_RENDEZVOUS="STRICT_NBR_HOUR";
     private final RendezvousManagement rendezvousFIFO;
     private final RendezvousManagement rendezvousStrictNbrPatientHour;
     private final RendezvousManagement rendezvousUndefinedNbrPatientHour;

@@ -2,6 +2,7 @@ package com.healthcaredental.reception.rendezvous;
 
 import com.healthcaredental.reception.Patient.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -31,9 +32,9 @@ public class RendezvousController {
     }
 
     @GetMapping("/rendezvous")
-    public List<Rendezvous> getAllRendezvous() {
+    public ResponseEntity<List<Rendezvous>> getAllRendezvous() {
 
-        return rendezvousService.getAllRendezvous();
+        return ResponseEntity.ok(rendezvousService.getAllRendezvous());
     }
 
     @GetMapping("/rendezvous/{id}")

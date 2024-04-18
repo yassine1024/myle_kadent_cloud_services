@@ -1,6 +1,7 @@
 package com.healthcaredental.reception.Patient;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,9 +14,9 @@ public class PatientController {
     private PatientService patientService;
 
     @GetMapping("")
-    public List<Patient> getAllPatients() {
+    public ResponseEntity<List<Patient>> getAllPatients() {
 
-        return patientService.getAllPatients();
+        return ResponseEntity.ok(patientService.getAllPatients());
     }
 
     @GetMapping("/{id}")
