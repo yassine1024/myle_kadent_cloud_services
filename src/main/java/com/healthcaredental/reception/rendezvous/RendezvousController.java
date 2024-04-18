@@ -36,6 +36,11 @@ public class RendezvousController {
 
         return ResponseEntity.ok(rendezvousService.getAllRendezvous());
     }
+    @GetMapping("/rendezvous/date/{date}")
+    public ResponseEntity<List<Rendezvous>> getAllRendezvousByDate(@PathVariable String date) {
+
+        return ResponseEntity.ok(rendezvousService.getAllRendezvousByDate(date));
+    }
 
     @GetMapping("/rendezvous/{id}")
     public Rendezvous getRendezvous(@PathVariable("id") Long id) {

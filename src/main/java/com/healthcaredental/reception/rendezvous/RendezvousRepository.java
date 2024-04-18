@@ -28,4 +28,5 @@ public interface RendezvousRepository extends JpaRepository<Rendezvous, Long> {
     boolean ifPatientAlreadyAdded(@Param("rendezvous") Rendezvous rendezvous);
 
     public List<Rendezvous> findByMedecinId(String medecinId);
+    public List<Rendezvous> findByDateOrderByTimeAsc(String date);
 }

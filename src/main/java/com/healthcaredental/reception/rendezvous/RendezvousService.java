@@ -85,4 +85,13 @@ public class RendezvousService {
                 .forEach(rendezvous::add);
          return rendezvous;
     }
+
+    public List<Rendezvous> getAllRendezvousByDate(String date) {
+
+        List<Rendezvous> rendezvous = new ArrayList<Rendezvous>();
+
+        rendezvousRepository.findByDateOrderByTimeAsc(date)
+                .forEach(rendezvous::add);
+        return rendezvous;
+    }
 }
