@@ -63,12 +63,12 @@ public class RendezvousController {
     }
 
     @PutMapping("/patients/{patientId}/rendezvous/{id}")
-    public void updateRendezvous(@PathVariable String id, @PathVariable String patientId, @RequestBody Rendezvous rendezvous) {
+    public ResponseEntity<Boolean> updateRendezvous(@PathVariable String id, @PathVariable String patientId, @RequestBody Rendezvous rendezvous) {
 
         Patient patient = new Patient();
         patient.setId(patientId);
         rendezvous.setPatient(patient);
-        rendezvousService.updateRendezvous(rendezvous);
+      return  ResponseEntity.ok(rendezvousService.updateRendezvous(rendezvous));
 
     }
 
