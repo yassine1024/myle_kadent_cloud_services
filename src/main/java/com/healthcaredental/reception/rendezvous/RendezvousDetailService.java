@@ -25,4 +25,13 @@ public class RendezvousDetailService {
         this.rendezvousDetailRepository.saveAll(rendezvousDetails);
         return true;
     }
+
+    public List<RendezvousDetail> getConfirmedPatientsList(String date) {
+        List<RendezvousDetail> rendezvousDetails = new ArrayList<RendezvousDetail>();
+
+        this.rendezvousDetailRepository.findByIdDate(date)
+                .forEach(rendezvousDetails::add);
+
+        return rendezvousDetails;
+    }
 }

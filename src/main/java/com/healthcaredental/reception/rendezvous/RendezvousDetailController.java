@@ -13,11 +13,11 @@ public class RendezvousDetailController {
 
     private final RendezvousDetailService rendezvousDetailService;
 
- /*   @GetMapping("/{id}")
-    public Patient getPatient(@PathVariable("id") String id) {
+    @GetMapping("")
+    public ResponseEntity<List<RendezvousDetail>> getConfirmedPatientsList(@RequestParam String date) {
 
-
-    }*/
+        return ResponseEntity.ok(this.rendezvousDetailService.getConfirmedPatientsList(date));
+    }
 
     @PostMapping
     public ResponseEntity<Boolean> addListConfirmedAppointments(@RequestBody List<Rendezvous> confirmedRendezvous) {
