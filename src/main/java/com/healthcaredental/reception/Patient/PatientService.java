@@ -34,14 +34,14 @@ public class PatientService {
         return patientRepository.findById(id).get();
     }
 
-    public void addPatient(Patient patient) {
+    public Patient addPatient(Patient patient) {
 
         try {
             patient.setId(hashPatientToString.hasheObjectToString(patient));
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
-        patientRepository.save(patient);
+      return  patientRepository.save(patient);
     }
 
     public void updatePatient(Patient patient) {

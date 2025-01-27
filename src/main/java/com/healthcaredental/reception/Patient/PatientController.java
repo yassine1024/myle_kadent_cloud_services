@@ -32,9 +32,9 @@ public class PatientController {
     }
 
     @PostMapping
-    public void addPatient(@RequestBody Patient patient) {
+    public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) {
 
-        patientService.addPatient(patient);
+      return ResponseEntity.ok(patientService.addPatient(patient)) ;
     }
 
     @PutMapping("/{id}")
