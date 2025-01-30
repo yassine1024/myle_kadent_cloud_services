@@ -71,4 +71,9 @@ public class QueueService {
 
         return queueRepository.findByRendezvousId(id);
     }
+
+    public List<Queue> getAllQueues() {
+
+        return queueRepository.findAll();
+    }
 }
