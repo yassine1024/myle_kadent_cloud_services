@@ -48,7 +48,7 @@ public class QueueService {
 
     public void patientArrive(Queue queue) {
         queue.setArrive(true);
-        queue.setArriveTime(DateManagement.getTimeHhMmFormat());
+//        queue.setArriveTime(DateManagement.getTimeHhMmFormat());
         queueRepository.save(queue);
     }
 
