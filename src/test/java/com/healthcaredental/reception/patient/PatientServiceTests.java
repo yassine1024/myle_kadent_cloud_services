@@ -33,7 +33,7 @@ public class PatientServiceTests {
             patient.setLastName(faker.name().lastName());
             patient.setPhoneNumber(faker.phoneNumber().phoneNumber());
             patient.setAddress(faker.address().streetAddress());
-            patientService.addPatient(patient);
+            patientService.addPatient(patient, "1");
 
 
         }

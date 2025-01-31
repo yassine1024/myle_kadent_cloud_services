@@ -1,7 +1,12 @@
 package com.healthcaredental.reception.Patient;
 
+import com.healthcaredental.reception.cabinet.Cabinet;
+import com.healthcaredental.reception.cabinet.CabinetRepository;
+import com.healthcaredental.reception.cabinet.CabinetVisit;
+import com.healthcaredental.reception.cabinet.CabinetVisitRepository;
 import com.healthcaredental.reception.functionality.HashObjectToString;
 import com.healthcaredental.reception.functionality.HashPatientToString;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,19 +16,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PatientService {
 
-    @Autowired
-    private PatientRepository patientRepository;
-    @Autowired
-    private HashObjectToString<Patient> hashPatientToString;
 
-    public List<Patient> getAllPatients() {
+    private final PatientRepository patientRepository;
+    private final HashObjectToString<Patient> hashPatientToString;
+    private final CabinetVisitRepository cabinetVisitRepository;
+    private final CabinetRepository cabinetRepository;
 
-        List<Patient> patients = new ArrayList<Patient>();
+    public List<Patient> getAllPatientsByCabinet(String id) {
+        List<CabinetVisit> visits = cabinetVisitRepository.findByCabinetId(id);
+        List<Patient> patients = new ArrayList<>();
 
-        patientRepository.findAll()
-                .forEach(patients::add);
+        for (CabinetVisit visit : visits) {
+            patients.add(visit.getPatient());
+        }
 
         return patients;
 
@@ -34,13 +42,20 @@ public class PatientService {
         return patientRepository.findById(id).get();
     }
 
-    public Patient addPatient(Patient patient) {
+    public Patient addPatient(Patient patient, String id) {
 
         try {
             patient.setId(hashPatientToString.hasheObjectToString(patient));
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
+
+        Cabinet cabinet = cabinetRepository.findById(id).get();
+        CabinetVisit cabinetVisit= new CabinetVisit();
+        cabinetVisit.setPatient(patient);
+        cabinetVisit.setCabinet(cabinet);
+        cabinetVisitRepository.save(cabinetVisit);
+
       return  patientRepository.save(patient);
     }
 

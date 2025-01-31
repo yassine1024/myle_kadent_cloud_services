@@ -1,22 +1,25 @@
 package com.healthcaredental.reception.Patient;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Entity;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/patients")
+@RequestMapping("/api/cabinets/{id}/patients")
+@RequiredArgsConstructor
 public class PatientController {
 
-    @Autowired
-    private PatientService patientService;
+
+    private final PatientService patientService;
 
     @GetMapping("")
-    public ResponseEntity<List<Patient>> getAllPatients() {
+    public ResponseEntity<List<Patient>> getAllPatientsByCabinet(@PathVariable String id) {
 
-        return ResponseEntity.ok(patientService.getAllPatients());
+        return ResponseEntity.ok(patientService.getAllPatientsByCabinet(id));
     }
 
     @GetMapping("/meta-data")
@@ -32,9 +35,9 @@ public class PatientController {
     }
 
     @PostMapping
-    public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) {
+    public ResponseEntity<Patient> addPatient(@RequestBody Patient patient, @PathVariable String id) {
 
-      return ResponseEntity.ok(patientService.addPatient(patient)) ;
+      return ResponseEntity.ok(patientService.addPatient(patient, id));
     }
 
     @PutMapping("/{id}")
