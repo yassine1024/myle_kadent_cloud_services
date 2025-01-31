@@ -27,6 +27,4 @@ public class Rendezvous {
     @JoinColumn(name = "medecin_id")
     private Medecin medecin;
 
-    @OneToMany(mappedBy = "rendezvous")
-    private Set<CabinetVisit> visits;
 }

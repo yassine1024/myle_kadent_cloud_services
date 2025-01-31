@@ -1,10 +1,14 @@
 package com.healthcaredental.reception.rendezvous;
 
+import com.healthcaredental.reception.cabinet.CabinetVisit;
+import com.healthcaredental.reception.cabinet.CabinetVisitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class RendezvousService {
@@ -13,6 +17,8 @@ public class RendezvousService {
     private final RendezvousManagement rendezvousFIFO;
     private final RendezvousManagement rendezvousStrictNbrPatientHour;
     private final RendezvousManagement rendezvousUndefinedNbrPatientHour;
+    @Autowired
+    private  CabinetVisitRepository cabinetVisitRepository;
 
 
     public RendezvousService(RendezvousFIFO rendezvousFIFO, RendezvousStrictNbrPatientHour rendezvousStrictNbrPatientHour,
@@ -29,14 +35,22 @@ public class RendezvousService {
     @Autowired
     private RendezvousPostPonedRepository rendezvousPostPonedRepository;
 
-    public List<Rendezvous> getAllRendezvous() {
+    public List<Rendezvous> getAllRendezvous(String cabinetId) {
 
-        List<Rendezvous> rendezvous = new ArrayList<Rendezvous>();
+        List<CabinetVisit> cabinetVisits = cabinetVisitRepository.findByCabinetId(cabinetId);
+        List<Rendezvous> rendezvousList = new ArrayList<>();
+        Set<String> processedPatientIds = new HashSet<>();
 
-        rendezvousRepository.findAll()
-                .forEach(rendezvous::add);
-        return rendezvous;
+        for (CabinetVisit visit : cabinetVisits) {
+            String patientId = visit.getPatient().getId();
+            if (!processedPatientIds.contains(patientId)) {
+                rendezvousRepository.findByPatientId(patientId)
+                        .forEach(rendezvousList::add);
+                processedPatientIds.add(patientId);
+            }
+        }
 
+        return rendezvousList;
     }
 
     public Rendezvous getRendezvous(Long id) {

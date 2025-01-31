@@ -22,7 +22,4 @@ public class CabinetVisit {
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    @ManyToOne
-    @JoinColumn(name = "rendezvous_id", nullable = true)
-    private Rendezvous rendezvous;
 }

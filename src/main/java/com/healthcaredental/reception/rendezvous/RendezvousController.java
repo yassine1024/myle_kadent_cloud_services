@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/cabinets/{id}")
 public class RendezvousController {
 
 
@@ -32,9 +32,9 @@ public class RendezvousController {
     }
 
     @GetMapping("/rendezvous")
-    public ResponseEntity<List<Rendezvous>> getAllRendezvous() {
+    public ResponseEntity<List<Rendezvous>> getAllRendezvous(@PathVariable String id) {
 
-        return ResponseEntity.ok(rendezvousService.getAllRendezvous());
+        return ResponseEntity.ok(rendezvousService.getAllRendezvous(id));
     }
     @GetMapping("/rendezvous/date/{date}")
     public ResponseEntity<List<Rendezvous>> getAllRendezvousByDate(@PathVariable String date) {
@@ -42,10 +42,10 @@ public class RendezvousController {
         return ResponseEntity.ok(rendezvousService.getAllRendezvousByDate(date));
     }
 
-    @GetMapping("/rendezvous/{id}")
-    public Rendezvous getRendezvous(@PathVariable("id") Long id) {
+    @GetMapping("/rendezvous/{rendezvousId}")
+    public Rendezvous getRendezvous(@PathVariable("rendezvousId") Long rendezvousId) {
 
-        return rendezvousService.getRendezvous(id);
+        return rendezvousService.getRendezvous(rendezvousId);
     }
 
     @PostMapping("/patients/{patientId}/rendezvous")
@@ -62,8 +62,8 @@ public class RendezvousController {
         return response;
     }
 
-    @PutMapping("/patients/{patientId}/rendezvous/{id}")
-    public ResponseEntity<Boolean> updateRendezvous(@PathVariable String id, @PathVariable String patientId, @RequestBody Rendezvous rendezvous) {
+    @PutMapping("/patients/{patientId}/rendezvous/{rendezvousId}")
+    public ResponseEntity<Boolean> updateRendezvous(@PathVariable String rendezvousId, @PathVariable String patientId, @RequestBody Rendezvous rendezvous) {
 
         Patient patient = new Patient();
         patient.setId(patientId);
@@ -72,8 +72,8 @@ public class RendezvousController {
 
     }
 
-    @DeleteMapping("/rendezvous/{id}")
-    public void deleteRendezvous(@PathVariable Long id) {
-        rendezvousService.deleteRendezvous(id);
+    @DeleteMapping("/rendezvous/{rendezvousId}")
+    public void deleteRendezvous(@PathVariable Long rendezvousId) {
+        rendezvousService.deleteRendezvous(rendezvousId);
     }
 }
