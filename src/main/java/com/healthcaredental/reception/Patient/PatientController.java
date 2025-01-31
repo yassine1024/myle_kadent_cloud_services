@@ -28,10 +28,10 @@ public class PatientController {
         return ResponseEntity.ok(patientService.getAllPatientsWithMetaData());
     }
 
-    @GetMapping("/{id}")
-    public Patient getPatient(@PathVariable("id") String id) {
+    @GetMapping("/{patientId}")
+    public Patient getPatient(@PathVariable("patientId") String patientId) {
 
-        return patientService.getPatient(id);
+        return patientService.getPatient(patientId);
     }
 
     @PostMapping
@@ -40,16 +40,16 @@ public class PatientController {
       return ResponseEntity.ok(patientService.addPatient(patient, id));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{patientId}")
     public void updatePatient(@RequestBody Patient patient) {
 
         patientService.updatePatient(patient);
 
     }
     
-    @DeleteMapping("/{id}")
-    public void deletePatient(@PathVariable String id){
-        patientService.deletePatient(id);
+    @DeleteMapping("/{patientId}")
+    public void deletePatient(@PathVariable String patientId){
+        patientService.deletePatient(patientId);
     }
 
 }
