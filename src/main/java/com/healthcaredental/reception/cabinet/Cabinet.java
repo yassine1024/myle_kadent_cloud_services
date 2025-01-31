@@ -1,6 +1,7 @@
 package com.healthcaredental.reception.cabinet;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -20,5 +21,6 @@ public class Cabinet {
     private String phoneNumber;
 
     @OneToMany(mappedBy = "cabinet")
+    @JsonIgnore
     private Set<CabinetVisit> visits;
 }

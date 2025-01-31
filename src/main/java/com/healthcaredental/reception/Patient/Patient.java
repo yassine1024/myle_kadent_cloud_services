@@ -1,5 +1,6 @@
 package com.healthcaredental.reception.Patient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.healthcaredental.reception.cabinet.CabinetVisit;
 import com.healthcaredental.reception.employee.medecin.Medecin;
 import lombok.Data;
@@ -30,5 +31,6 @@ public class Patient {
     private Set<Medecin> treates;
 
     @OneToMany(mappedBy = "patient")
+    @JsonIgnore
     private Set<CabinetVisit> visits;
 }
