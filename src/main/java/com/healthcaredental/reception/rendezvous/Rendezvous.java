@@ -1,10 +1,12 @@
 package com.healthcaredental.reception.rendezvous;
 
 import com.healthcaredental.reception.Patient.Patient;
+import com.healthcaredental.reception.cabinet.CabinetVisit;
 import com.healthcaredental.reception.employee.medecin.Medecin;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -25,4 +27,6 @@ public class Rendezvous {
     @JoinColumn(name = "medecin_id")
     private Medecin medecin;
 
+    @OneToMany(mappedBy = "rendezvous")
+    private Set<CabinetVisit> visits;
 }
