@@ -53,6 +53,9 @@ public class LoadData implements CommandLineRunner {
             patient.setLastName(faker.name().lastName());
             patient.setPhoneNumber(faker.phoneNumber().phoneNumber());
             patient.setAddress(faker.address().streetAddress());
+            patient.setAge(String.valueOf(faker.number().numberBetween(5, 100)));
+            patient.setGender(faker.demographic().sex());
+            patient.setJob(faker.job().title());
             patientRepository.save(patient);
 
             CabinetVisit visit = new CabinetVisit();
@@ -69,6 +72,9 @@ public class LoadData implements CommandLineRunner {
             patient.setLastName(faker.name().lastName());
             patient.setPhoneNumber(faker.phoneNumber().phoneNumber());
             patient.setAddress(faker.address().streetAddress());
+            patient.setAge(String.valueOf(faker.number().numberBetween(5, 100)));
+            patient.setGender(faker.demographic().sex());
+            patient.setJob(faker.job().title());
             patientRepository.save(patient);
 
             CabinetVisit visit = new CabinetVisit();
