@@ -52,11 +52,13 @@ public class PatientService {
 
         Cabinet cabinet = cabinetRepository.findById(id).get();
         CabinetVisit cabinetVisit= new CabinetVisit();
-        cabinetVisit.setPatient(patient);
         cabinetVisit.setCabinet(cabinet);
+
+        Patient savedPatient =  patientRepository.save(patient);
+        cabinetVisit.setPatient(savedPatient);
         cabinetVisitRepository.save(cabinetVisit);
 
-      return  patientRepository.save(patient);
+      return  savedPatient;
     }
 
     public void updatePatient(Patient patient) {
