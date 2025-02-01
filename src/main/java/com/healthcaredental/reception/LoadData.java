@@ -8,6 +8,12 @@ import com.healthcaredental.reception.cabinet.Cabinet;
 import com.healthcaredental.reception.cabinet.CabinetRepository;
 import com.healthcaredental.reception.cabinet.CabinetVisit;
 import com.healthcaredental.reception.cabinet.CabinetVisitRepository;
+import com.healthcaredental.reception.employee.Employee;
+import com.healthcaredental.reception.employee.EmployeeRepository;
+import com.healthcaredental.reception.employee.assistant.Assistant;
+import com.healthcaredental.reception.employee.houseMaid.HouseMaid;
+import com.healthcaredental.reception.employee.medecin.Medecin;
+import com.healthcaredental.reception.employee.other.Other;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,11 +23,13 @@ public class LoadData implements CommandLineRunner {
     private final CabinetRepository cabinetRepository;
     private final PatientRepository patientRepository;
     private final CabinetVisitRepository cabinetVisitRepository;
+    private final EmployeeRepository employeeRepository;
 
-    public LoadData(CabinetRepository cabinetRepository, PatientRepository patientRepository, CabinetVisitRepository cabinetVisitRepository) {
+    public LoadData(CabinetRepository cabinetRepository, PatientRepository patientRepository, CabinetVisitRepository cabinetVisitRepository, EmployeeRepository employeeRepository) {
         this.cabinetRepository = cabinetRepository;
         this.patientRepository = patientRepository;
         this.cabinetVisitRepository = cabinetVisitRepository;
+        this.employeeRepository = employeeRepository;
     }
 
     @Override
@@ -82,5 +90,49 @@ public class LoadData implements CommandLineRunner {
             visit.setPatient(patient);
             cabinetVisitRepository.save(visit);
         }
+
+
+        // Create 30 employees
+        for (int i = 0; i < 30; i++) {
+            Employee employee;
+            if (i < 15) {
+                // First 15 employees are Medecin
+                employee = new Medecin();
+                if (i < 5) {
+                    employee.setCabinet(cabinet1);
+                } else {
+                    employee.setCabinet(cabinet2);
+                }
+            } else {
+                // Remaining 15 employees are Assistant, HouseMaid, and Other
+                int role = faker.number().numberBetween(1, 4);
+                switch (role) {
+                    case 1:
+                        employee = new Assistant();
+                        break;
+                    case 2:
+                        employee = new HouseMaid();
+                        break;
+                    case 3:
+                    default:
+                        employee = new Other();
+                        break;
+                }
+                if (faker.bool().bool()) {
+                    employee.setCabinet(cabinet1);
+                } else {
+                    employee.setCabinet(cabinet2);
+                }
+            }
+            employee.setId(faker.idNumber().valid());
+            employee.setFirstName(faker.name().firstName());
+            employee.setLastName(faker.name().lastName());
+            employee.setAddress(faker.address().streetAddress());
+            employee.setPhoneNumber(faker.phoneNumber().phoneNumber());
+            employee.setPhoto(faker.internet().avatar());
+            employee.setDocumentFolder(faker.file().fileName());
+            employeeRepository.save(employee);
+        }
+
     }
 }
