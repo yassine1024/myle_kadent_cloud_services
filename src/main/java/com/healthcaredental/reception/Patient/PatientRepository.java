@@ -34,4 +34,7 @@ public interface PatientRepository extends JpaRepository<Patient, String> {
             "LEFT JOIN r.rendezvousDetails rd " +
             "GROUP BY p")
     List<PatientDTO> findAllWithMetaData();*/
+
+    @Query("SELECT p FROM Patient p JOIN p.visits v WHERE v.cabinet.id = :cabinetId")
+    List<Patient> findByCabinetId(@Param("cabinetId") String cabinetId);
 }
