@@ -25,7 +25,7 @@ class RendezvousServiceTest {
     void addRendezvous() {
 
         Rendezvous rendezvous = new Rendezvous();
-        rendezvous.setPatient(new Patient("-1219625691"));
+        //rendezvous.setPatient(new Patient("-1219625691"));
         rendezvous.setMedecin(new Medecin("524-44-5151"));
         rendezvous.setDate("2023-04-20");
         rendezvous.setTime("19:55");
