@@ -67,6 +67,6 @@ class QueueServiceTest {
     void patientInsideRoom() {
 
         Queue queue = queueService.getQueueById(8l);
-        queueService.patientInsideRoom(queue);
+        queueService.patientInsideRoom(queue, "740-04-7106");
     }
 }

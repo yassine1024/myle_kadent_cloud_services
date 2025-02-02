@@ -3,9 +3,11 @@ package com.healthcaredental.reception.Queue;
 import com.healthcaredental.reception.date.DateManagement;
 import com.healthcaredental.reception.employee.Employee;
 import com.healthcaredental.reception.employee.medecin.Medecin;
+import com.healthcaredental.reception.employee.medecin.MedecinRepository;
 import com.healthcaredental.reception.rendezvous.Rendezvous;
 import com.healthcaredental.reception.rendezvous.RendezvousRepository;
 import com.healthcaredental.reception.rendezvous.RendezvousService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,10 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class QueueService {
 
-    @Autowired
-    private QueueRepository queueRepository;
+
+    private final QueueRepository queueRepository;
+    private final RendezvousRepository rendezvousRepository;
+    private final MedecinRepository medecinRepository;
+
     private List<Queue> queues = new ArrayList<Queue>();
 
     //    @PostConstruct
@@ -60,10 +66,13 @@ public class QueueService {
         queueRepository.save(queue);
     }
 
-    public void patientInsideRoom(Queue queue) {
-        queue.setInside(true);
-        queue.setInsideTime(DateManagement.getTimeHhMmFormat());
-        queue.setOutside(false);
+    public void patientInsideRoom(Queue queue, String medecinId) {
+
+        Medecin medecin = medecinRepository.findById(medecinId).get();
+        Rendezvous rendezvous = rendezvousRepository.findById(queue.getRendezvousId()).get();
+        rendezvous.setMedecin(medecin);
+        rendezvousRepository.save(rendezvous);
+
         queueRepository.save(queue);
     }
 

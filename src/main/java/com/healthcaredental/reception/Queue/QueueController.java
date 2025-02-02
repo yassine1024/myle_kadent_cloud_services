@@ -52,8 +52,8 @@ public class QueueController {
     }
 
     @PutMapping("/{rdvId}/patient_inside")
-    public void patientInsideRoom(@RequestBody Queue queue) {
+    public void patientInsideRoom(@RequestBody Queue queue, @RequestBody String medecinId) {
 
-        queueService.patientInsideRoom(queue);
+        queueService.patientInsideRoom(queue, medecinId);
     }
 }
