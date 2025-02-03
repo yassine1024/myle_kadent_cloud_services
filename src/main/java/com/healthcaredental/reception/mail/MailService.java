@@ -17,7 +17,7 @@ public class MailService {
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);
-        message.setFrom("your-email@gmail.com");
+        message.setFrom("kadent.group.communication@gmail.com");
 
         mailSender.send(message);
     }
