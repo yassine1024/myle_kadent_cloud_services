@@ -27,6 +27,7 @@ public class Patient {
     private String gender;
     private String job;
     private String age;
+    private String email;
     @ManyToMany(mappedBy = "treatedPatients")
     private Set<Medecin> treates;
 
