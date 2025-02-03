@@ -14,6 +14,7 @@ import com.healthcaredental.reception.employee.assistant.Assistant;
 import com.healthcaredental.reception.employee.houseMaid.HouseMaid;
 import com.healthcaredental.reception.employee.medecin.Medecin;
 import com.healthcaredental.reception.employee.other.Other;
+import com.healthcaredental.reception.mail.MailService;
 import com.healthcaredental.reception.rendezvous.Rendezvous;
 import com.healthcaredental.reception.rendezvous.RendezvousRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -35,13 +36,15 @@ public class LoadData implements CommandLineRunner {
     private final CabinetVisitRepository cabinetVisitRepository;
     private final EmployeeRepository employeeRepository;
     private final RendezvousRepository rendezvousRepository;
+    private final MailService mailService;
 
-    public LoadData(CabinetRepository cabinetRepository, PatientRepository patientRepository, CabinetVisitRepository cabinetVisitRepository, EmployeeRepository employeeRepository, RendezvousRepository rendezvousRepository) {
+    public LoadData(CabinetRepository cabinetRepository, PatientRepository patientRepository, CabinetVisitRepository cabinetVisitRepository, EmployeeRepository employeeRepository, RendezvousRepository rendezvousRepository, MailService mailService) {
         this.cabinetRepository = cabinetRepository;
         this.patientRepository = patientRepository;
         this.cabinetVisitRepository = cabinetVisitRepository;
         this.employeeRepository = employeeRepository;
         this.rendezvousRepository = rendezvousRepository;
+        this.mailService = mailService;
     }
 
     @Override
@@ -173,5 +176,10 @@ public class LoadData implements CommandLineRunner {
             rendezvousRepository.save(rendezvous);
 
         }
+
+
+        // Send email notification
+        mailService.sendEmail("atik.yassine.1024@gmail.com", "Data Load Complete", "The initial data load has been completed successfully.");
+
     }
 }

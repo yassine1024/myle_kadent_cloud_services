@@ -8,16 +8,17 @@ spring:
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.H2Dialect
-server:
-  port: 8093
   mail:
-    host: smtp.gmail.com
+    host: smtp-relay.brevo.com
     port: 587
-    username: kadent.group.communication@gmail.com
-    password: (a+b)==(b+a);
+    username: 84e2ca001@smtp-brevo.com
+    password: R8BAKQHJMpIT9gXC
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
+          debug: true
+server:
+  port: 8093
