@@ -69,6 +69,7 @@ public class QueueService {
     public void patientInsideRoom(Queue queue, String medecinId) {
 
         Medecin medecin = medecinRepository.findById(medecinId).get();
+        System.err.println("Medecin : " + medecin.getId());
         Rendezvous rendezvous = rendezvousRepository.findById(queue.getRendezvousId()).get();
         rendezvous.setMedecin(medecin);
         rendezvousRepository.save(rendezvous);

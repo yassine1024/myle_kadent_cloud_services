@@ -51,9 +51,8 @@ public class QueueController {
         queueService.patientQuitRoom(queue);
     }
 
-    @PutMapping("/{rdvId}/patient_inside")
-    public void patientInsideRoom(@RequestBody Queue queue, @RequestBody String medecinId) {
-
-        queueService.patientInsideRoom(queue, medecinId);
+    @PutMapping("/{rdvId}/patient_inside/{doctorId}")
+    public void patientInsideRoom(@PathVariable String rdvId, @PathVariable String doctorId, @RequestBody Queue queue) {
+        queueService.patientInsideRoom(queue, doctorId);
     }
 }
