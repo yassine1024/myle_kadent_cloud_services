@@ -45,10 +45,10 @@ public class QueueController {
         queueService.patientArrive(queue);
     }
 
-    @PutMapping("/{rdvId}/patient_quit")
-    public void patientQuitRoom(@RequestBody Queue queue) {
+    @PutMapping("/{queueId}/patient_quit")
+    public void patientQuitRoom(@PathVariable String queueId) {
 
-        queueService.patientQuitRoom(queue);
+        queueService.patientQuitRoom(Long.parseLong(queueId));
     }
 
     @PutMapping("/{rdvId}/patient_inside/{doctorId}")

@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,10 +61,13 @@ public class QueueService {
     }
 
 
-    public void patientQuitRoom(Queue queue) {
+    public void patientQuitRoom(Long id) {
+
+        Queue queue = queueRepository.findByRendezvousId(id);
+
         queue.setOutside(true);
-        queue.setQuitTime(DateManagement.getTimeHhMmFormat());
-        queue.setInside(false);
+        queue.setQuitTime(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+
         queueRepository.save(queue);
     }
 

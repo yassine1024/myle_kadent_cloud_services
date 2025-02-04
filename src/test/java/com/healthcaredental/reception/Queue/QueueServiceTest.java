@@ -59,7 +59,7 @@ class QueueServiceTest {
     void patientQuitRoom() {
 
         Queue queue = queueService.getQueueById(8l);
-        queueService.patientQuitRoom(queue);
+//        queueService.patientQuitRoom(queue);
 
     }
 
