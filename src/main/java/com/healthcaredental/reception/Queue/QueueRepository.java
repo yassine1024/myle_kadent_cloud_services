@@ -37,4 +37,7 @@ public interface QueueRepository extends JpaRepository<Queue, Long> {
 
     @Query("SELECT q FROM Queue q WHERE q.rendezvousId = :rendezvousId")
     Queue findByRendezvousId(@Param("rendezvousId") Long rendezvousId);
+
+    @Query("SELECT q FROM Queue q WHERE q.isArrive = true AND q.isInside = false ORDER BY q.arriveTime ASC")
+    List<Queue> findByIsArriveTrueAndIsInsideFalse();
 }
