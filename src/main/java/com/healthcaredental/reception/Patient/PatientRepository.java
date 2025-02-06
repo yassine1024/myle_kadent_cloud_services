@@ -12,7 +12,7 @@ public interface PatientRepository extends JpaRepository<Patient, String> {
     List<Patient> findPatientsByDoctorId(@Param("medecinId") String medecinId);
 
 
-    @Query(value = "SELECT p.id, " +
+  /*  @Query(value = "SELECT p.id, " +
             "COUNT(rd.rendezvous_id) AS confirmed_appointment, " +
             "COUNT(CASE WHEN rd.arrive_time IS NULL THEN rd.rendezvous_id ELSE NULL END) AS missing_confirmed_appointment, " +
             "COUNT(rp.id) AS postponed_appointment " +
@@ -22,6 +22,21 @@ public interface PatientRepository extends JpaRepository<Patient, String> {
             "LEFT JOIN Rendezvous_Detail rd ON rd.rendezvous_id = r.id " +
             "GROUP BY p.id " +
             "ORDER BY  postponed_appointment DESC , missing_confirmed_appointment DESC ", nativeQuery = true)
+    List<Object[]> findAllWithMetaData();*/
+
+
+    @Query(value = "SELECT p.id, " +
+            "COUNT(rd.rendezvous_id) AS confirmed_appointment, " +
+            "COUNT(CASE WHEN rd.arrive_time IS NULL THEN rd.rendezvous_id ELSE NULL END) AS missing_confirmed_appointment, " +
+            "COUNT(rp.id) AS postponed_appointment, " +
+            "COUNT(CASE WHEN r.date < CURRENT_DATE AND rp.id IS NULL AND q.id IS NULL THEN r.id ELSE NULL END) AS missed_appointment " +
+            "FROM Patient p " +
+            "LEFT JOIN Rendezvous r ON r.patient_id = p.id " +
+            "LEFT JOIN Rendezvous_Post_Poned rp ON rp.rendezvous_id = r.id " +
+            "LEFT JOIN Rendezvous_Detail rd ON rd.rendezvous_id = r.id " +
+            "LEFT JOIN Queue q ON q.rendezvous_id = r.id " +
+            "GROUP BY p.id " +
+            "ORDER BY postponed_appointment DESC, missed_appointment DESC", nativeQuery = true)
     List<Object[]> findAllWithMetaData();
 
    /* @Query("SELECT NEW com.healthcaredental.reception.Patient.PatientDTO(p, " +
