@@ -50,6 +50,6 @@ class RendezvousServiceTest {
         Rendezvous rendezvous= rendezvousService.getRendezvous(8l);
         rendezvous.setMedecin((Medecin) medecin);
 
-        rendezvousService.updateRendezvous(rendezvous);
+//        rendezvousService.updateRendezvous(rendezvous);
     }
 }

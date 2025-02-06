@@ -62,13 +62,11 @@ public class RendezvousController {
         return response;
     }
 
-    @PutMapping("/patients/{patientId}/rendezvous/{rendezvousId}")
-    public ResponseEntity<Boolean> updateRendezvous(@PathVariable String rendezvousId, @PathVariable String patientId, @RequestBody Rendezvous rendezvous) {
+    @PostMapping("/patients/{patientId}/rendezvous/{rendezvousId}")
+    public ResponseEntity<Boolean> postponedRendezvous(@PathVariable String rendezvousId, @RequestBody String reason) {
 
-        Patient patient = new Patient();
-        patient.setId(patientId);
-        rendezvous.setPatient(patient);
-      return  ResponseEntity.ok(rendezvousService.updateRendezvous(rendezvous));
+        return ResponseEntity.ok(rendezvousService.updateRendezvous(rendezvousId, reason));
+
 
     }
 

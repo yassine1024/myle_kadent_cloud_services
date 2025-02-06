@@ -72,29 +72,17 @@ public class RendezvousService {
         return "";
     }
 
-    public boolean updateRendezvous(Rendezvous rendezvous) {
+    public boolean updateRendezvous(String rendezvousId, String reason) {
 
-//        rendezvousRepository.save(rendezvous);
-        Rendezvous oldRendezvous = this.getRendezvous(rendezvous.getId());
-        String oldDate= oldRendezvous.getDate();
-        String oldTime= oldRendezvous.getTime();
+        Rendezvous rendezvous = this.getRendezvous(Long.parseLong(rendezvousId));
+        RendezvousPostPoned rendezvousPostPoned = new RendezvousPostPoned();
+        rendezvousPostPoned.setReason(reason);
+        rendezvousPostPoned.setRendezvous(rendezvous);
+        rendezvousPostPonedRepository.save(rendezvousPostPoned);
 
-        String message = this.addRendezvous(rendezvous);
-
-        if (message.equals(MessagesRendezvous.ADD_RDV_SUCCESS.getMessage())) {
-            RendezvousPostPoned rendezvousPostPoned = new RendezvousPostPoned();
-
-            rendezvousPostPoned.setRendezvous(rendezvous);
-            rendezvousPostPoned.setOldDate(oldDate);
-            rendezvousPostPoned.setOldTime(oldTime);
-            rendezvousPostPoned.setNewDate(rendezvous.getDate());
-            rendezvousPostPoned.setNewTime(rendezvous.getTime());
-
-            this.rendezvousPostPonedRepository.save(rendezvousPostPoned);
-            return true;
-        }
-        return false;
+        return true;
     }
+
 
     public void deleteRendezvous(Long id) {
 

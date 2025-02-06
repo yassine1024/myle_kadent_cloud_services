@@ -177,9 +177,5 @@ public class LoadData implements CommandLineRunner {
 
         }
 
-
-        // Send email notification
-        mailService.sendEmail("atik.yassine.1024@gmail.com", "Data Load Complete", "The initial data load has been completed successfully.");
-
     }
 }
