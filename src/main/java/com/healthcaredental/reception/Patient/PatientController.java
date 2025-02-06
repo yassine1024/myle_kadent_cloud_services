@@ -23,9 +23,9 @@ public class PatientController {
     }
 
     @GetMapping("/meta-data")
-    public ResponseEntity<List<PatientDTO>> getAllPatientsWithMetaData() {
+    public ResponseEntity<List<PatientDTO>> getAllPatientsWithMetaData(@PathVariable String id) {
 
-        return ResponseEntity.ok(patientService.getAllPatientsWithMetaData());
+        return ResponseEntity.ok(patientService.getAllPatientsWithMetaData(id));
     }
 
     @GetMapping("/{patientId}")

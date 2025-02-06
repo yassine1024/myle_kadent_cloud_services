@@ -78,8 +78,8 @@ public class PatientService {
         return patientRepository.findPatientsByDoctorId(id);
     }
 
-    public List<PatientDTO> getAllPatientsWithMetaData() {
-        List<Object[]> results = patientRepository.findAllWithMetaData();
+    public List<PatientDTO> getAllPatientsWithMetaData(String cabinetId) {
+        List<Object[]> results = patientRepository.findAllWithMetaData(cabinetId);
         List<PatientDTO> patientDTOs = new ArrayList<>();
 
         for (Object[] result : results) {
