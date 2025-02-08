@@ -52,4 +52,9 @@ public interface PatientRepository extends JpaRepository<Patient, String> {
 
     @Query("SELECT p FROM Patient p JOIN p.visits v WHERE v.cabinet.id = :cabinetId")
     List<Patient> findByCabinetId(@Param("cabinetId") String cabinetId);
+
+    @Query("SELECT COUNT(p) FROM Patient p JOIN p.visits v WHERE v.cabinet.id = :cabinetId")
+    long countByCabinetId(@Param("cabinetId") String cabinetId);
+
+
 }

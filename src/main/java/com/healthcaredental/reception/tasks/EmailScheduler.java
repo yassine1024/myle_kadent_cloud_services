@@ -16,13 +16,16 @@ public class EmailScheduler {
     private final QueueRepository queueRepository;
     private final MailService mailService;
 
-    @Scheduled(fixedRate = 2400000) // 2400000 milliseconds = 40 minutes
+    @Scheduled(fixedRate = 120000) // 2400000 milliseconds = 40 minutes
     public void sendReminderEmails() {
+        //Yassine you should send email to only the patients who are waiting in the queue and have not been seen by the doctor yet for today,
+        // due to could a patient came but sudenlly go outside and didn't come back without postponed his appointment.
         List<Queue> queues = queueRepository.findByIsArriveTrueAndIsInsideFalse();
         int order = 1;
         for (Queue queue : queues) {
             String email = queue.getRendezvous().getPatient().getEmail();
             if(email == null) {
+                order++;
                 continue;
             }
             String subject = "Reminder: Your appointment is waiting";
