@@ -10,6 +10,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 
@@ -27,6 +31,7 @@ public class Patient {
     private String gender;
     private String job;
     private String age;
+    private String birthDate;
     private String email;
     @ManyToMany(mappedBy = "treatedPatients")
     private Set<Medecin> treates;
@@ -34,4 +39,14 @@ public class Patient {
     @OneToMany(mappedBy = "patient")
     @JsonIgnore
     private Set<CabinetVisit> visits;
+
+    public String getAge() {
+        if (birthDate == null) {
+            return null;
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
+        OffsetDateTime birthDateTime = OffsetDateTime.parse(birthDate, formatter);
+        LocalDate birthDateLocal = birthDateTime.toLocalDate();
+        return String.valueOf(Period.between(birthDateLocal, LocalDate.now()).getYears());
+    }
 }
