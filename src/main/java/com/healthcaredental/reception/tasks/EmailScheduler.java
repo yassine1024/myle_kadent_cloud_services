@@ -7,6 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Component
@@ -20,7 +23,11 @@ public class EmailScheduler {
     public void sendReminderEmails() {
         //Yassine you should send email to only the patients who are waiting in the queue and have not been seen by the doctor yet for today,
         // due to could a patient came but sudenlly go outside and didn't come back without postponed his appointment.
-        List<Queue> queues = queueRepository.findByIsArriveTrueAndIsInsideFalse();
+        String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String todayWithWildcard = today + "%";
+        System.out.println("todayWithWildcard:"+todayWithWildcard);
+        List<Queue> queues = queueRepository.findByIsArriveTrueAndIsInsideFalse(todayWithWildcard);
+        System.out.println("queues:"+queues.size());
         int order = 1;
         for (Queue queue : queues) {
             String email = queue.getRendezvous().getPatient().getEmail();
