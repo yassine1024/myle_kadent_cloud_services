@@ -8,6 +8,30 @@ services:
       - "8093:8093"
     networks:
       - app-network
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/kadent_db
+      SPRING_DATASOURCE_USERNAME: kadent
+      SPRING_DATASOURCE_PASSWORD: t@keYourM3dicin3
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: kadent_db
+      MYSQL_USER: kadent
+      MYSQL_PASSWORD: t@keYourM3dicin3
+      MYSQL_ROOT_PASSWORD: t@keYourM3dicin3
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
 networks:
   app-network:
