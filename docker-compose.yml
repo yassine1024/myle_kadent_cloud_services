@@ -7,7 +7,8 @@ services:
     ports:
       - "8093:8093"
     volumes:
-      - .:/app  # Mount the entire project to /app in the container
+      - ./src:/app/src
+      - ./target/classes:/app/target/classes
     networks:
       - app-network
     environment:

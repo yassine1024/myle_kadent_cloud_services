@@ -6,8 +6,15 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: update
-    database-platform: org.hibernate.dialect.H2Dialect
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+  flyway:
+    enabled: true
+    baselineOnMigrate: true
+    locations: classpath:db/migration
+    url: jdbc:mysql://db:3306/kadent_db
+    user: kadent
+    password: t@keYourM3dicin3
   mail:
     host: smtp-relay.brevo.com
     port: 587
@@ -22,3 +29,7 @@ spring:
           debug: true
 server:
   port: 8093
+
+logging:
+  level:
+    org.flywaydb: debug
