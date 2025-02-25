@@ -14,7 +14,7 @@
     <name>reception</name>
     <description>The first service that managing receptionning process</description>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -100,8 +100,18 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>9</source>
-                    <target>9</target>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>11.3.3</version>
+                <configuration>
+                    <url>jdbc:mysql://db:3306/kadent_db</url>
+                    <user>kadent</user>
+                    <password>t@keYourM3dicin3</password>
                 </configuration>
             </plugin>
         </plugins>

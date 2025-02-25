@@ -1,8 +1,10 @@
-FROM maven:3.8.4-openjdk-11
+FROM maven:3.8.4-openjdk-17
 WORKDIR /app
 # Copy only the pom and download dependencies first (improves rebuild speed)
 COPY pom.xml .
 RUN mvn dependency:go-offline
 # Copy the source code and other necessary files
 COPY src ./src
+# Run Flyway migrations and then the application
+RUN mvn flyway:migrate
 CMD ["mvn", "spring-boot:run"]
