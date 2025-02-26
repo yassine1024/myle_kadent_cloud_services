@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalTime;
 import java.util.List;
 
 
@@ -38,6 +39,10 @@ public interface QueueRepository extends JpaRepository<Queue, Long> {
     @Query("SELECT q FROM Queue q WHERE q.rendezvousId = :rendezvousId")
     Queue findByRendezvousId(@Param("rendezvousId") Long rendezvousId);
 
-    @Query("SELECT q FROM Queue q WHERE q.isArrive = true AND q.isInside = false AND q.rendezvous.time LIKE :today ORDER BY q.arriveTime ASC")
-    List<Queue> findByIsArriveTrueAndIsInsideFalse(@Param("today") String today);
+    /*@Query("SELECT q FROM Queue q WHERE q.isArrive = true AND q.isInside = false AND q.rendezvous.time LIKE :today ORDER BY q.arriveTime ASC")
+    List<Queue> findByIsArriveTrueAndIsInsideFalse(@Param("today") String today);*/
+    @Query("SELECT q FROM Queue q WHERE q.isArrive = true AND q.isInside = false AND q.rendezvous.time = :time ORDER BY q.arriveTime ASC")
+    List<Queue> findByIsArriveTrueAndIsInsideFalse(@Param("time") LocalTime time);
+
+
 }

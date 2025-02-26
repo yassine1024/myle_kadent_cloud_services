@@ -3,12 +3,13 @@ package com.healthcaredental.reception.employee.medecin;
 
 import com.healthcaredental.reception.Patient.Patient;
 import com.healthcaredental.reception.employee.Employee;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+
 import java.util.List;
 import java.util.Set;
 

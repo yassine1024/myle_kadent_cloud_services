@@ -5,6 +5,7 @@ import com.healthcaredental.reception.cabinet.CabinetVisitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -113,7 +114,7 @@ public class RendezvousService {
 
         List<Rendezvous> rendezvous = new ArrayList<Rendezvous>();
 
-        rendezvousRepository.findByDateOrderByTimeAsc(date)
+        rendezvousRepository.findByDateOrderByTimeAsc(LocalDate.parse(date))
                 .forEach(rendezvous::add);
         return rendezvous;
     }

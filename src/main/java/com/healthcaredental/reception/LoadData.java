@@ -165,17 +165,19 @@ public class LoadData implements CommandLineRunner {
             rendezvous.setMedecin(null);
             rendezvous.setComplaint(complaints.get(faker.number().numberBetween(0, complaints.size())));
             rendezvous.setActeToPerform(actesToPerform.get(faker.number().numberBetween(0, actesToPerform.size())));
-            if (i < 30) {
-                rendezvous.setDate(today.format(dateFormatter));
-                LocalTime time = LocalTime.of(8 + (i % 10), 0); // Times from 8 AM to 6 PM
-                rendezvous.setTime(LocalDateTime.of(today, time).format(timeFormatter));
-            } else {
-                rendezvous.setDate(tomorrow.format(dateFormatter));
-                rendezvous.setTime(LocalDateTime.now().plusDays(1).format(timeFormatter));
-            }
-            rendezvousRepository.save(rendezvous);
 
+            if (i < 30) {
+                rendezvous.setDate(today);  // Directly assign LocalDate
+                LocalTime time = LocalTime.of(8 + (i % 10), 0); // Times from 8 AM to 6 PM
+                rendezvous.setTime(time); // Directly assign LocalTime
+            } else {
+                rendezvous.setDate(tomorrow); // Directly assign LocalDate
+                rendezvous.setTime(LocalTime.now().plusHours(1)); // Directly assign LocalTime
+            }
+
+            rendezvousRepository.save(rendezvous);
         }
+
 
     }
 }

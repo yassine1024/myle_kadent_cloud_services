@@ -2,9 +2,10 @@ package com.healthcaredental.reception.cabinet;
 
 import com.healthcaredental.reception.Patient.Patient;
 import com.healthcaredental.reception.rendezvous.Rendezvous;
+import jakarta.persistence.*;
 import lombok.Data;
 
-import javax.persistence.*;
+
 
 @Entity
 @Data

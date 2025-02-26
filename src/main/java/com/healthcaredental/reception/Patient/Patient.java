@@ -3,13 +3,13 @@ package com.healthcaredental.reception.Patient;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.healthcaredental.reception.cabinet.CabinetVisit;
 import com.healthcaredental.reception.employee.medecin.Medecin;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.Period;

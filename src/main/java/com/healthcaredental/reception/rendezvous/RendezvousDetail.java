@@ -1,9 +1,11 @@
 package com.healthcaredental.reception.rendezvous;
 
 import com.healthcaredental.reception.employee.medecin.Medecin;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
-import javax.persistence.*;
 
 @Entity
 @Data

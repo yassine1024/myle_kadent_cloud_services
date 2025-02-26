@@ -1,12 +1,14 @@
 package com.healthcaredental.reception.rendezvous;
 
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Embeddable;
-import javax.persistence.OneToOne;
+
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Embeddable
 @Data
@@ -16,5 +18,5 @@ public class RendezvousDetailId implements Serializable {
 
     @OneToOne
     private Rendezvous rendezvous;
-    private String date;
+    private LocalDate date;
 }

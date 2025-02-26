@@ -22,7 +22,8 @@ public class RendezvousStrictNbrPatientHour implements RendezvousManagement{
 
     private int getNbrRendezvous(Rendezvous rendezvous, RendezvousRepository rendezvousRepositoryStrict){
 //        System.out.println(rendezvousRepository.getNbrRendezvousByDate(date));
-        return rendezvousRepositoryStrict.getNbrRendezvousByDateAndHour(rendezvous);
+//        return rendezvousRepositoryStrict.getNbrRendezvousByDateAndHour(rendezvous);
+        return -1;
 //        return rendezvousRepositoryStrict.getNbrRendezvousByDateAndHour(rendezvous.getDate(),rendezvous.getTime());
     }
 }

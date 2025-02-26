@@ -3,6 +3,8 @@ package com.healthcaredental.reception.rendezvous;
 
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 
 @Component
 public class RendezvousFIFO implements RendezvousManagement{
@@ -23,7 +25,7 @@ public class RendezvousFIFO implements RendezvousManagement{
         return MessagesRendezvous.ADD_RDV_SUCCESS.getMessage();
     }
 
-    private int getNbrRendezvous(String date, RendezvousRepository rendezvousRepository){
+    private int getNbrRendezvous(LocalDate date, RendezvousRepository rendezvousRepository){
         System.out.println(rendezvousRepository.getNbrRendezvousByDate(date));
         return rendezvousRepository.getNbrRendezvousByDate(date);
     }

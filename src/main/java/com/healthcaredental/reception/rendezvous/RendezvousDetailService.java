@@ -3,6 +3,7 @@ package com.healthcaredental.reception.rendezvous;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class RendezvousDetailService {
     public List<RendezvousDetail> getConfirmedPatientsList(String date) {
         List<RendezvousDetail> rendezvousDetails = new ArrayList<RendezvousDetail>();
 
-        this.rendezvousDetailRepository.findByIdDate(date)
+        this.rendezvousDetailRepository.findByIdDate(LocalDate.parse(date))
                 .forEach(rendezvousDetails::add);
 
         return rendezvousDetails;

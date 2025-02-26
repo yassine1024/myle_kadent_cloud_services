@@ -11,9 +11,11 @@ import java.util.List;
 
 public interface RendezvousRepository extends JpaRepository<Rendezvous, Long> {
 
-    public List<Rendezvous> findByPatientId(String patientId);
-    @Query("SELECT COALESCE(count(*), 0) FROM Rendezvous rdv WHERE rdv.date = :date")
-    int getNbrRendezvousByDate(@Param("date") String date);
+   public List<Rendezvous> findByPatientId(String patientId);
+    /*  @Query("SELECT COALESCE(count(*), 0) FROM Rendezvous rdv WHERE rdv.date = :date")
+     int getNbrRendezvousByDate(@Param("date") String date);*/
+   @Query("SELECT COALESCE(count(*), 0) FROM Rendezvous rdv WHERE rdv.date = :date")
+   int getNbrRendezvousByDate(@Param("date") LocalDate date);
 
     @Query("SELECT COALESCE(count(*), 0) FROM Rendezvous rdv WHERE rdv.date = :#{#rendezvous.date}" +
             " AND HOUR(rdv.time) = HOUR(:#{#rendezvous.time})")
@@ -30,7 +32,7 @@ public interface RendezvousRepository extends JpaRepository<Rendezvous, Long> {
     boolean ifPatientAlreadyAdded(@Param("rendezvous") Rendezvous rendezvous);
 
     public List<Rendezvous> findByMedecinId(String medecinId);
-    public List<Rendezvous> findByDateOrderByTimeAsc(String date);
+    public List<Rendezvous> findByDateOrderByTimeAsc(LocalDate date);
 
 
     @Query("SELECT COUNT(r) FROM Rendezvous r WHERE r.patient.id IN (SELECT p.id FROM Patient p JOIN p.visits v WHERE v.cabinet.id = :cabinetId)")

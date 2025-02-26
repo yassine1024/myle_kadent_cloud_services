@@ -1,8 +1,8 @@
 package com.healthcaredental.reception.employee.other;
 
 import com.healthcaredental.reception.employee.Employee;
+import jakarta.persistence.Entity;
 
-import javax.persistence.Entity;
 
 @Entity
 public class Other extends Employee {

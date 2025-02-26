@@ -8,11 +8,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @SpringBootTest(properties = "spring.config.name=application-test")
 @AutoConfigureMockMvc
@@ -22,7 +24,7 @@ class RendezvousControllerTest {
     private MockMvc mockMvc;
     @Autowired
     private ObjectMapper objectMapper;
-    @MockBean
+//    @MockBean
     private RendezvousService rendezvousService;
 
     @SneakyThrows
@@ -34,8 +36,9 @@ class RendezvousControllerTest {
         Rendezvous rendezvous = new Rendezvous();
         //rendezvous.setPatient(new Patient("-1219625691"));
         rendezvous.setMedecin(new Medecin("524-44-5151"));
-        rendezvous.setDate("2023-04-20");
-        rendezvous.setTime("19:55");
+        rendezvous.setDate(LocalDate.parse("2023-04-20"));
+        rendezvous.setTime(LocalTime.parse("19:55"));
+
 
         String rendezvousJS= objectMapper.writeValueAsString(rendezvous);
 
