@@ -27,6 +27,10 @@ spring:
           starttls:
             enable: true
           debug: true
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: target/classes
 server:
   port: 8093
 
