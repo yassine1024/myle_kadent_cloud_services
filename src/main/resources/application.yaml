@@ -34,8 +34,10 @@ spring:
 server:
   port: 8093
 jwt:
-  secret: your_jwt_secret_key
-  expiration: 3600000 # 1 hour in milliseconds
+  secret: 7cc083f9d2cf363fc8dd993d1df86136bc01108f8d471f777992a1f953e0d658703c3bfb294ef66bdf4a91568f21f29d56c1c5ab414bb0232c8b3e48e9a176e9
+    # 30 days in milliseconds (30 * 24 * 60 * 60 * 1000)
+  expiration: 2592000000
 logging:
   level:
     org.flywaydb: debug
+    org.springframework.security: DEBUG

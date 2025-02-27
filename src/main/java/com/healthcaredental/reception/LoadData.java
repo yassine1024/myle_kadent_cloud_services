@@ -4,6 +4,8 @@ package com.healthcaredental.reception;
 import com.github.javafaker.Faker;
 import com.healthcaredental.reception.Patient.Patient;
 import com.healthcaredental.reception.Patient.PatientRepository;
+import com.healthcaredental.reception.auth.User;
+import com.healthcaredental.reception.auth.UserRepository;
 import com.healthcaredental.reception.cabinet.Cabinet;
 import com.healthcaredental.reception.cabinet.CabinetRepository;
 import com.healthcaredental.reception.cabinet.CabinetVisit;
@@ -18,6 +20,7 @@ import com.healthcaredental.reception.mail.MailService;
 import com.healthcaredental.reception.rendezvous.Rendezvous;
 import com.healthcaredental.reception.rendezvous.RendezvousRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -26,6 +29,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Arrays;
+import java.util.Set;
 
 
 @Component
@@ -37,14 +41,18 @@ public class LoadData implements CommandLineRunner {
     private final EmployeeRepository employeeRepository;
     private final RendezvousRepository rendezvousRepository;
     private final MailService mailService;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public LoadData(CabinetRepository cabinetRepository, PatientRepository patientRepository, CabinetVisitRepository cabinetVisitRepository, EmployeeRepository employeeRepository, RendezvousRepository rendezvousRepository, MailService mailService) {
+    public LoadData(CabinetRepository cabinetRepository, PatientRepository patientRepository, CabinetVisitRepository cabinetVisitRepository, EmployeeRepository employeeRepository, RendezvousRepository rendezvousRepository, MailService mailService, UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.cabinetRepository = cabinetRepository;
         this.patientRepository = patientRepository;
         this.cabinetVisitRepository = cabinetVisitRepository;
         this.employeeRepository = employeeRepository;
         this.rendezvousRepository = rendezvousRepository;
         this.mailService = mailService;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -178,6 +186,40 @@ public class LoadData implements CommandLineRunner {
             rendezvousRepository.save(rendezvous);
         }
 
+//        this.createUsers();
 
     }
+
+    private void createUsers() {
+
+        // Create a Medecin user
+        User medecin = new User();
+        medecin.setUsername("medecin");
+        medecin.setPassword(passwordEncoder.encode("password"));
+        medecin.setRoles(Set.of("ROLE_MEDECIN"));
+        userRepository.save(medecin);
+
+        // Create other users with different roles as needed
+        // Example: Admin user
+        User admin = new User();
+        admin.setUsername("admin");
+        admin.setPassword(passwordEncoder.encode("adminpassword"));
+        admin.setRoles(Set.of("ROLE_ADMIN"));
+        userRepository.save(admin);
+
+        // Example: Reception user
+        User reception = new User();
+        reception.setUsername("reception");
+        reception.setPassword(passwordEncoder.encode("receptionpassword"));
+        reception.setRoles(Set.of("ROLE_RECEPTION"));
+        userRepository.save(reception);
+
+        // Example: Employee user
+        User employee = new User();
+        employee.setUsername("employee");
+        employee.setPassword(passwordEncoder.encode("employeepassword"));
+        employee.setRoles(Set.of("ROLE_EMPLOYEE"));
+        userRepository.save(employee);
+    }
+
 }

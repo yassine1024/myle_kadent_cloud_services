@@ -33,8 +33,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        System.err.println("SecurityFilterChain");
         http
                 // Disable CSRF since we're using JWTs
+                // Disable CSRF (since we are using JWT and stateless sessions)
+                .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 // Define authorization rules using request matchers
                 .authorizeHttpRequests(auth -> auth
