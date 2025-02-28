@@ -42,6 +42,7 @@ public class SecurityConfig {
                 // Define authorization rules using request matchers
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/login").permitAll()
+                        .requestMatchers("/api/pointage/totp").permitAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/medecin/**").hasRole("MEDECIN")
                         .requestMatchers("/api/reception/**").hasRole("RECEPTION")
