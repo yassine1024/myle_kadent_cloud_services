@@ -3,7 +3,7 @@ services:
   backend:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     ports:
       - "8093:8093"
     volumes:
