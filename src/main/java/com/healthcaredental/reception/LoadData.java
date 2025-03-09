@@ -186,7 +186,7 @@ public class LoadData implements CommandLineRunner {
             rendezvousRepository.save(rendezvous);
         }
 
-//        this.createUsers();
+        this.createUsers();
 
     }
 
