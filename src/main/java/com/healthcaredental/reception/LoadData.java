@@ -196,7 +196,7 @@ public class LoadData implements CommandLineRunner {
         User medecin = new User();
         medecin.setUsername("medecin");
         medecin.setPassword(passwordEncoder.encode("password"));
-        medecin.setRoles(Set.of("ROLE_MEDECIN"));
+        medecin.setRoles(Set.of("ROLE_MEDECIN", "ROLE_EMPLOYEE"));
         userRepository.save(medecin);
 
         // Create other users with different roles as needed
@@ -211,7 +211,7 @@ public class LoadData implements CommandLineRunner {
         User reception = new User();
         reception.setUsername("reception");
         reception.setPassword(passwordEncoder.encode("receptionpassword"));
-        reception.setRoles(Set.of("ROLE_RECEPTION"));
+        reception.setRoles(Set.of("ROLE_RECEPTION", "ROLE_EMPLOYEE"));
         userRepository.save(reception);
 
         // Example: Employee user

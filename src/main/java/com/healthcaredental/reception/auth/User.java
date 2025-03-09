@@ -1,6 +1,7 @@
 package com.healthcaredental.reception.auth;
 
 import com.healthcaredental.reception.cabinet.Cabinet;
+import com.healthcaredental.reception.employee.Employee;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,6 +19,6 @@ public class User {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> roles;
     @OneToOne
-    @JoinColumn(name = "cabinet_id")
-    private Cabinet cabinet;
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 }
