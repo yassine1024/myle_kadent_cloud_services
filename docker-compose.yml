@@ -13,7 +13,7 @@ services:
     networks:
       - app-network
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/kadent_db
+      SPRING_DATASOURCE_URL: jdbc:mysql://db.app.local:3306/kadent_db
       SPRING_DATASOURCE_USERNAME: kadent
       SPRING_DATASOURCE_PASSWORD: t@keYourM3dicin3
     depends_on:
