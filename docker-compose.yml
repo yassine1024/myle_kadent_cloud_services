@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: kadent_backend_repo
     ports:
       - "8093:8093"
     volumes:
