@@ -41,9 +41,9 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 // Define authorization rules using request matchers
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/health").permitAll()
                         .requestMatchers("/api/auth/login").permitAll()
                         .requestMatchers("/api/pointage/totp").permitAll()
-                        .requestMatchers("/health").permitAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/medecin/**").hasRole("MEDECIN")
                         .requestMatchers("/api/reception/**").hasRole("RECEPTION")

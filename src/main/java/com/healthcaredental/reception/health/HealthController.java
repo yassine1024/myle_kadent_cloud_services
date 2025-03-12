@@ -9,6 +9,7 @@ public class HealthController {
 
     @GetMapping("/health")
     public ResponseEntity<String> healthCheck() {
+        System.out.println("Health check");
         return ResponseEntity.ok("OK");
     }
 }

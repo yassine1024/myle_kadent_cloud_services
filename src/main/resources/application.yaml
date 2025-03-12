@@ -40,6 +40,6 @@ jwt:
 logging:
   level:
     org.flywaydb: debug
-    org.springframework.security: DEBUG
+    #org.springframework.security: DEBUG
 totp:
   secret: "XE5RGHHHDFY3DPE32FFXEEZAJOIIONX"

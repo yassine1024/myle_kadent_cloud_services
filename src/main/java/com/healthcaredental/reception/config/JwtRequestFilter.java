@@ -30,9 +30,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         // Use getRequestURI() to check the full path
         String requestUri = request.getRequestURI();
-        if ("/api/auth/login".equals(requestUri)) {
+        if ("/api/auth/login".equals(requestUri) || "/health".equals(requestUri)) {
             // Optionally log that we're skipping JWT processing
-            System.out.println("Skipping JWT filter for login endpoint");
+            System.out.println("Skipping JWT filter for login and health endpoints");
             chain.doFilter(request, response);
             return;
         }
