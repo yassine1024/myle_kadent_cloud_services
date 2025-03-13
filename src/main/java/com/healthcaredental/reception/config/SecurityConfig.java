@@ -41,13 +41,17 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 // Define authorization rules using request matchers
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/health").permitAll()
-                        .requestMatchers("/api/auth/login").permitAll()
-                        .requestMatchers("/api/pointage/totp").permitAll()
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/medecin/**").hasRole("MEDECIN")
-                        .requestMatchers("/api/reception/**").hasRole("RECEPTION")
-                        .requestMatchers("/api/employee/**").hasRole("EMPLOYEE")
+                        .requestMatchers("/health", "/api/auth/login", "/api/pointage/totp").permitAll()
+                        // Specific matchers for metrics, patients, queues:
+                        .requestMatchers("/api/cabinets/*/metrics/**").hasAnyRole("ADMIN", "MEDECIN", "RECEPTION")
+                        .requestMatchers("/api/cabinets/*/patients/**").hasAnyRole("ADMIN", "MEDECIN", "RECEPTION")
+                        .requestMatchers("/api/cabinets/*/queues/**").hasAnyRole("ADMIN", "MEDECIN", "RECEPTION")
+                        // Broader matcher for all /api/cabinets endpoints:
+                        .requestMatchers("/api/cabinets/**").hasAnyRole("EMPLOYEE", "ADMIN", "MEDECIN", "RECEPTION")
+                        // Other matchers:
+                        .requestMatchers("/api/cabinet/**").hasAnyRole("EMPLOYEE", "ADMIN", "MEDECIN", "RECEPTION")
+                        .requestMatchers("/api/patients/**").hasAnyRole("RECEPTION", "ADMIN", "MEDECIN")
+                        .requestMatchers("/api/rendezvous-detail").hasAnyRole("RECEPTION", "ADMIN", "MEDECIN")
                         .anyRequest().authenticated()
                 )
                 // Set session management to stateless (JWT based)
