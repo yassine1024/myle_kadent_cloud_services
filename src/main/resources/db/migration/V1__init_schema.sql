@@ -71,8 +71,8 @@ CREATE TABLE patient_treat (
 -- 6. Table: rendezvous
 CREATE TABLE rendezvous (
     id BIGINT NOT NULL AUTO_INCREMENT,
-    date VARCHAR(255),
-    time VARCHAR(255),
+    date DATE,
+    time TIME,
     complaint VARCHAR(255),
     acte_to_perform VARCHAR(255),
     patient_id VARCHAR(255),

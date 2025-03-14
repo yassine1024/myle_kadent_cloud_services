@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 public interface RendezvousRepository extends JpaRepository<Rendezvous, Long> {
@@ -38,7 +39,12 @@ public interface RendezvousRepository extends JpaRepository<Rendezvous, Long> {
     @Query("SELECT COUNT(r) FROM Rendezvous r WHERE r.patient.id IN (SELECT p.id FROM Patient p JOIN p.visits v WHERE v.cabinet.id = :cabinetId)")
     long countByCabinetId(@Param("cabinetId") String cabinetId);
 
-    @Query("SELECT r FROM Rendezvous r WHERE r.patient.id IN (SELECT p.id FROM Patient p JOIN p.visits v WHERE v.cabinet.id = :cabinetId)" +
-            " AND r.medecin IS NULL AND r.time >= :date ORDER BY r.date ASC, r.time ASC")
-    List<Rendezvous> findByCabinetIdAndDateAfter(@Param("cabinetId") String cabinetId, @Param("date") String date);
+    @Query("SELECT r FROM Rendezvous r " +
+            "WHERE r.patient.id IN (SELECT p.id FROM Patient p JOIN p.visits v WHERE v.cabinet.id = :cabinetId) " +
+            "AND r.medecin IS NULL " +
+            "AND (r.date > :today OR (r.date = :today AND r.time >= :now)) " +
+            "ORDER BY r.date ASC, r.time ASC")
+    List<Rendezvous> findByCabinetIdAndDateAfter(@Param("cabinetId") String cabinetId,
+                                                 @Param("today") LocalDate today,
+                                                 @Param("now") LocalTime now);
 }

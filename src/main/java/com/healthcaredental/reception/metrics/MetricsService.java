@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -33,9 +34,10 @@ public class MetricsService {
     }
 
     public List<Rendezvous> fetchUpcomingAppointments(String cabinetId) {
-        String now = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-        System.out.println("now:"+now);
-        return rendezvousRepository.findByCabinetIdAndDateAfter(cabinetId, now);
+        LocalDate today = LocalDate.now();
+        LocalTime now = LocalTime.now();
+        System.out.println("Today: " + today + ", Now: " + now);
+        return rendezvousRepository.findByCabinetIdAndDateAfter(cabinetId, today, now);
     }
 
     public List<String> fetchNotifications(String cabinetId) {
