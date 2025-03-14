@@ -7,6 +7,7 @@ import com.healthcaredental.reception.employee.medecin.MedecinRepository;
 import com.healthcaredental.reception.rendezvous.Rendezvous;
 import com.healthcaredental.reception.rendezvous.RendezvousRepository;
 import com.healthcaredental.reception.rendezvous.RendezvousService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,10 +54,23 @@ public class QueueService {
         return queues;
     }
 
-    public void patientArrive(Queue queue) {
-        queue.setArrive(true);
-//        queue.setArriveTime(DateManagement.getTimeHhMmFormat());
-        queueRepository.save(queue);
+    @Transactional
+    public void patientArrive(Queue incomingQueue) {
+        // Fetch the managed Rendezvous entity based on its id
+        Rendezvous managedRdv = rendezvousRepository.findById(
+                        incomingQueue.getRendezvous().getId())
+                .orElseThrow(() -> new EntityNotFoundException("Rendezvous not found"));
+
+        // Create a new Queue entity
+        Queue newQueue = new Queue();
+        newQueue.setRendezvous(managedRdv);  // assign the managed Rendezvous
+        newQueue.setArrive(true);
+        newQueue.setArriveTime(incomingQueue.getArriveTime());
+        newQueue.setInside(incomingQueue.isInside());
+        newQueue.setOutside(incomingQueue.isOutside());
+
+        // Persist the new Queue entity
+        queueRepository.save(newQueue);
     }
 
 
