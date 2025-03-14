@@ -29,11 +29,11 @@ public interface PatientRepository extends JpaRepository<Patient, String> {
            "COUNT(r.id) AS total_appointment, " +
            "COUNT(CASE WHEN r.date < CURRENT_DATE AND rp.id IS NULL AND q.rendezvous_id IS NULL THEN r.id ELSE NULL END) AS missed_appointment, " +
            "COUNT(rp.id) AS postponed_appointment " +
-           "FROM Patient p " +
-           "LEFT JOIN Rendezvous r ON r.patient_id = p.id " +
+           "FROM patient p " +
+           "LEFT JOIN rendezvous r ON r.patient_id = p.id " +
            "LEFT JOIN rendezvous_postponed rp ON rp.rendezvous_id = r.id " +
-           "LEFT JOIN Queue q ON q.rendezvous_id = r.id " +
-           "LEFT JOIN Cabinet_Visit cv ON cv.patient_id = p.id " +
+           "LEFT JOIN queue q ON q.rendezvous_id = r.id " +
+           "LEFT JOIN cabinet_visit cv ON cv.patient_id = p.id " +
            "WHERE cv.cabinet_id = :cabinetId " +
            "GROUP BY p.id " +
            "ORDER BY postponed_appointment DESC, missed_appointment DESC", nativeQuery = true)

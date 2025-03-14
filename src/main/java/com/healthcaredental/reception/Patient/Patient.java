@@ -3,10 +3,7 @@ package com.healthcaredental.reception.Patient;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.healthcaredental.reception.cabinet.CabinetVisit;
 import com.healthcaredental.reception.employee.medecin.Medecin;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +17,7 @@ import java.util.Set;
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "patient") // explicitly set the table name to lowercase
 public class Patient {
 
     @Id

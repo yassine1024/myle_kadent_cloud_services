@@ -86,9 +86,9 @@ public class PatientService {
             String patientId = (String) result[0];
 
             Patient patient = this.getPatient(patientId);
-            BigInteger confirmedAppointment = (BigInteger) result[1];
-            BigInteger missingConfirmedAppointment = (BigInteger) result[2];
-            BigInteger postponedAppointment = (BigInteger) result[3];
+            BigInteger confirmedAppointment = BigInteger.valueOf(((Number) result[1]).longValue());
+            BigInteger missingConfirmedAppointment = BigInteger.valueOf(((Number) result[2]).longValue());
+            BigInteger postponedAppointment = BigInteger.valueOf(((Number) result[3]).longValue());
 
             PatientDTO patientDTO = new PatientDTO(patient,
                     confirmedAppointment.intValue(),
